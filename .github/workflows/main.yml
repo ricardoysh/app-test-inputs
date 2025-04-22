@@ -12,6 +12,10 @@ env:
 jobs:
   start:
     uses: ./.github/workflows/prerequisites.yml
+    with:
+      APP_NAME: ${{ env.APP_NAME }}
+      AUTOR: ${{ emv.AUTOR }}
+      DATE: ${{ env.DATE }}
     
   init:
     runs-on: macos-latest

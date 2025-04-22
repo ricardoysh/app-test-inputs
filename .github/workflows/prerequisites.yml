@@ -6,10 +6,17 @@ on:
 jobs:
   prerequisites:
     runs-on: macos-latest
+
+    env:
+        APP_NAME: ${{ inputs.APP_NAME }}
+        AUTOR: ${{ inputs.AUTOR }}
+        DATE: ${{ inputs.DATE }}
+        
     steps:
       - name: prerequisites
         run: |
           echo "Executando pré-requisitos..."
+          echo "# Show variables"
           echo ${{ env.APP_NAME }}
           echo ${{ env.AUTOR }}
           echo ${{ env.DATE }}
