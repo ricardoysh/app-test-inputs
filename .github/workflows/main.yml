@@ -9,7 +9,17 @@ on:
   push
   
 jobs:
+  job_00:
+    runs-on: macos-latest
+    steps:
+    - name: job 00
+      run: |
+        echo ${{ env.APP_NAME }}
+        echo ${{ env.AUTOR }}
+        echo ${{ env.DATE }}
+
   job_01:
+    needs: job_00
     uses: ./.github/workflows/prerequisites.yml
     secrets: inherit
 
