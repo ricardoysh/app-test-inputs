@@ -17,6 +17,11 @@ jobs:
         echo ${{ env.APP_NAME }}
         echo ${{ env.AUTOR }}
         echo ${{ env.DATE }}
+        echo "----------------------------------"
+        $APP_NAME
+        $AUTOR
+        $DATE
+        echo "----------- fim ------------------"
 
   job_01:
     needs: job_00
