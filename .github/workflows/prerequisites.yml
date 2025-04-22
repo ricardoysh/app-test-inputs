@@ -8,9 +8,9 @@ jobs:
     runs-on: macos-latest
 
     env:
-      APP_NAME: ${{ inputs.APP_NAME }}
-      AUTOR: ${{ inputs.AUTOR }}
-      DATE: ${{ inputs.DATE }}
+      APP_NAME: ${{ inputs.app-name }}
+      AUTOR: ${{ inputs.autor }}
+      DATE: ${{ inputs.date }}
 
     steps:
       - name: prerequisites
