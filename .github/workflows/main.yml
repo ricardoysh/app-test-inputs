@@ -13,9 +13,9 @@ jobs:
   start:
     uses: ./.github/workflows/prerequisites.yml
     with:
-      APP_NAME: ${{ vars.APP_NAME }}
-      AUTOR: ${{ vars.AUTOR }}
-      DATE: ${{ vars.DATE }}nv   
+      APP_NAME: ${{ inputs.APP_NAME }}
+      AUTOR: ${{ inputs.AUTOR }}
+      DATE: ${{ inputs.DATE }}nv   
   init:
     runs-on: macos-latest
     steps:
