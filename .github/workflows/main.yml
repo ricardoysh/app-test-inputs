@@ -4,6 +4,9 @@ on:
   push
 
 jobs:
+  start:
+    uses: ./.github/workflows/prerequisites.yml@main
+    
   init:
     runs-on: macos-latest
     steps:
