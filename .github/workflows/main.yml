@@ -12,13 +12,14 @@ on:
 jobs:
   start:
     uses: ./.github/workflows/prerequisites.yml
-    with:
-      app-name: ${{ env.APP_NAME }}
-      autor: ${{ env.AUTOR }}
-      date: ${{ env.DATE }}
+    # with:
+    #   app-name: ${{ env.APP_NAME }}
+    #   autor: ${{ env.AUTOR }}
+    #   date: ${{ env.DATE }}
   init:
     runs-on: macos-latest
     steps:
       - name: init test
         run: |
           echo "---------------> test"
+          echo ${{ env.APP_NAME }}
