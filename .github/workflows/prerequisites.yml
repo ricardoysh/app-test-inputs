@@ -1,0 +1,13 @@
+name: prerequisites
+
+on:
+  workflow_call:
+
+jobs:
+  prerequisites:
+    runs-on: macos-latest
+    steps:
+      - name: prerequisites
+        run: |
+          echo "Executando pré-requisitos..."
+
