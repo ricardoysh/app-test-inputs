@@ -1,22 +1,17 @@
 name: prerequisites
 
 on:
-  workflow_call:
+  workflow_call
 
 jobs:
-  prerequisites:
+  set-variables:
     runs-on: macos-latest
-
-    # env:
-    #   APP_NAME: ${{ inputs.APP_NAME }}
-    # #   AUTOR: ${{ inputs.autor }}
-    # #   DATE: ${{ inputs.date }}
 
     steps:
       - name: Show Variables
         run: |
-          echo "Executando pré-requisitos..."
+
           echo "---------------------------------------------"
-          echo ${{ env.APP_NAME }}
-          echo ${{ env.AUTOR }}
-          echo ${{ env.DATE }}
+          echo "${{ env.APP_NAME }}"
+          echo "${{ env.AUTOR }}"
+          echo "${{ env.DATE }}"
