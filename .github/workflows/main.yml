@@ -11,11 +11,10 @@ on:
 jobs:
   job_01:
     uses: ./.github/workflows/prerequisites.yml
-    with:
-      APP_NAME: ${{ env.APP_NAME }}
-    #   autor: ${{ env.AUTOR }}
-    #   date: ${{ env.DATE }}
+    secrets: inherit
+
   job_02:
+    needs: job_01
     runs-on: macos-latest
     steps:
       - name: test
