@@ -20,9 +20,9 @@ jobs:
     - name: set variables
       id: set-variables
       run: |
-        echo "APP_NAME=${{ env.APP_NAME }}" >> GITHUB_OUTPUT
-        echo "AUTOR=${{ env.AUTOR }}" >> GITHUB_OUTPUT
-        echo "DATE=${{ env.DATE }}" >> GITHUB_OUTPUT
+        echo "APP_NAME=${{ env.APP_NAME }}" >> "GITHUB_OUTPUT"
+        echo "AUTOR=${{ env.AUTOR }}" >> "GITHUB_OUTPUT"
+        echo "DATE=${{ env.DATE }}" >> "GITHUB_OUTPUT"
 
 
 
@@ -34,9 +34,9 @@ jobs:
         echo "----------------------------------"
 
 
-  job_01:
-    needs: job_00
-    uses: ./.github/workflows/prerequisites.yml
+  # job_01:
+  #   needs: job_00
+  #   uses: ./.github/workflows/prerequisites.yml
 
 
   job_02:
@@ -45,7 +45,10 @@ jobs:
     steps:
       - name: Display Variables
         run: |
-          echo "---------------> test"
-          echo ${{ needs.job_00.outputs.APP_NAME }}
-          echo ${{ needs.job_00.outputs.AUTOR }}
-          echo ${{ needs.job_00.outputs.DATE }}
+          echo "----- Variables: --------"
+          echo "$APP_NAME // $AUTOR // $DATE"
+
+        env:
+          APP_NAME: ${{ needs.job_00.outputs.APP_NAME }}
+          AUTOR: ${{ needs.job_00.outputs.AUTOR }}
+          DATE: ${{ needs.job_00.outputs.DATE }}
