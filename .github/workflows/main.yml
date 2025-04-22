@@ -2,7 +2,7 @@ name: 'App Test With Inputs'
 
 env:
   APP_NAME: 'app-test-ios-develop'
-  AUTOR: 'Fulano de Tal'
+  AUTOR: 'Steve Jobs'
   DATE: '22/04/2025'
 
 on:
@@ -11,7 +11,21 @@ on:
 jobs:
   job_00:
     runs-on: macos-latest
+    outputs:
+      APP_NAME: ${{ steps.set-variables.outputs.APP_NAME }}
+      AUTOR: ${{ steps.set-variables.outputs.AUTOR }}
+      DATE: ${{ steps.set-variables.outputs. DATE }}
+
     steps:
+    - name: set variables
+      id: set-variables
+      run: |
+        echo "APP_NAME=${{ env.APP_NAME }}" >> GITHUB_OUTPUT
+        echo "AUTOR=${{ env.AUTOR }}" >> GITHUB_OUTPUT
+        echo "DATE=${{ env.DATE }}" >> GITHUB_OUTPUT
+
+
+
     - name: job 00
       run: |
         echo ${{ env.APP_NAME }}
@@ -23,13 +37,15 @@ jobs:
   job_01:
     needs: job_00
     uses: ./.github/workflows/prerequisites.yml
-    secrets: inherit
+
 
   job_02:
-    needs: job_01
+    needs: job_00
     runs-on: macos-latest
     steps:
-      - name: test
+      - name: Display Variables
         run: |
           echo "---------------> test"
-          echo ${{ env.APP_NAME }}
+          echo ${{ needs.job_00.outputs.APP_NAME }}
+          echo ${{ needs.job_00.outputs.AUTOR }}
+          echo ${{ needs.job_00.outputs.DATE }}
