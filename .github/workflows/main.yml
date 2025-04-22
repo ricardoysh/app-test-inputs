@@ -1,0 +1,12 @@
+name: 'App Test With Inputs'
+
+on:
+  push
+
+jobs:
+  init:
+    runs-on: macos-latest
+    steps:
+      - name: init test
+        run: |
+          echo "---------------> test"
