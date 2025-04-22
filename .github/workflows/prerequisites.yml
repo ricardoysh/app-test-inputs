@@ -15,3 +15,7 @@ jobs:
           echo "${{ env.APP_NAME }}"
           echo "${{ env.AUTOR }}"
           echo "${{ env.DATE }}"
+          echo "---------------------------------------------"
+          echo "${{ vars.APP_NAME }}"
+          echo "${{ vars.AUTOR }}"
+          echo "${{ vars.DATE }}"
