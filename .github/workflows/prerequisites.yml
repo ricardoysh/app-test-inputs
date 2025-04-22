@@ -8,15 +8,15 @@ jobs:
     runs-on: macos-latest
 
     env:
-      APP_NAME: ${{ inputs.app-name }}
-      AUTOR: ${{ inputs.autor }}
-      DATE: ${{ inputs.date }}
+      APP_NAME: ${{ inputs.APP_NAME }}
+    #   AUTOR: ${{ inputs.autor }}
+    #   DATE: ${{ inputs.date }}
 
     steps:
       - name: prerequisites
         run: |
           echo "Executando pré-requisitos..."
-          echo "# Show variables"
+          echo "---------------------------------------------"
           echo ${{ env.APP_NAME }}
-          echo ${{ env.AUTOR }}
-          echo ${{ env.DATE }}
+        #   echo ${{ env.AUTOR }}
+        #   echo ${{ env.DATE }}
