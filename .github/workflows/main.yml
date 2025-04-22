@@ -24,8 +24,6 @@ jobs:
         echo "AUTOR=${{ env.AUTOR }}" >> "GITHUB_OUTPUT"
         echo "DATE=${{ env.DATE }}" >> "GITHUB_OUTPUT"
 
-
-
     - name: job 00
       run: |
         echo ${{ env.APP_NAME }}
