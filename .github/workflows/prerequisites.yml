@@ -10,4 +10,6 @@ jobs:
       - name: prerequisites
         run: |
           echo "Executando pré-requisitos..."
-
+          echo ${{ env.APP_NAME }}
+          echo ${{ env.AUTOR }}
+          echo ${{ env.DATE }}

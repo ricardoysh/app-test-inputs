@@ -1,12 +1,18 @@
 name: 'App Test With Inputs'
 
+
 on:
   push
+  
+env:
+  APP_NAME: 'app-test-ios-develop'
+  AUTOR: 'Fulano de Tal'
+  DATE: '22/04/2025'
 
 jobs:
   start:
     uses: ./.github/workflows/prerequisites.yml
-
+    
   init:
     runs-on: macos-latest
     steps:
