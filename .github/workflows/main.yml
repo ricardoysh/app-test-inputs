@@ -5,8 +5,8 @@ on:
 
 jobs:
   start:
-    uses: ./.github/workflows/prerequisites.yml@main
-    
+    uses: ./.github/workflows/prerequisites.yml
+
   init:
     runs-on: macos-latest
     steps:
