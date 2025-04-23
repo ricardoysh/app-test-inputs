@@ -39,7 +39,7 @@ jobs:
     - name: Load YAML Variables
       uses: doughepi/yaml-env-action@v1.0.0
       with:
-        files: app-test-inputs/env1.yml
+        files: ./env1.yml
 
     - name: Output YAML Variables
       run: |
