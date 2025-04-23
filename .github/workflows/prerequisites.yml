@@ -1,4 +1,4 @@
-name: set-variables
+name: prerequisites
 
 on:
   workflow_call:
@@ -22,14 +22,6 @@ jobs:
       - name: Show Variables
         run: |
 
-          echo "---------------------------------------------"
-          echo "${{ env.APP_NAME }}"
-          echo "${{ env.AUTOR }}"
-          echo "${{ env.DATE }}"
-          echo "---------------------------------------------"
-          echo "${{ vars.APP_NAME }}"
-          echo "${{ vars.AUTOR }}"
-          echo "${{ vars.DATE }}"
           echo "----------------------------------------------"
           echo "${{ inputs.APP_NAME }}"
           echo "${{ inputs.AUTOR }}"
