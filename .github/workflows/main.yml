@@ -17,6 +17,9 @@ jobs:
       DATE: ${{ steps.set-variables.outputs.DATE }}
 
     steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+        
     - name: set variables
       id: set-variables
       run: |
