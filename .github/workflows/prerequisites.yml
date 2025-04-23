@@ -15,7 +15,7 @@ on:
 
 
 jobs:
-  set-variables:
+  prereqs:
     runs-on: macos-latest
 
     steps:
