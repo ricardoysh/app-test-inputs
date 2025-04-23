@@ -14,7 +14,7 @@ jobs:
     outputs:
       APP_NAME: ${{ steps.set-variables.outputs.APP_NAME }}
       AUTOR: ${{ steps.set-variables.outputs.AUTOR }}
-      DATE: ${{ steps.set-variables.outputs. DATE }}
+      DATE: ${{ steps.set-variables.outputs.DATE }}
 
     steps:
     - name: set variables
