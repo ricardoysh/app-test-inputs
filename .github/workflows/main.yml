@@ -27,6 +27,7 @@ jobs:
         echo ${{ env.APP_NAME }}
         echo ${{ env.AUTOR }}
         echo ${{ env.DATE }}
+        echo "NAME > $CODESPACE_NAME"
 
 
   call-prereqs:
