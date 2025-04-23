@@ -20,16 +20,20 @@ jobs:
     - name: set variables
       id: set-variables
       run: |
-        echo "APP_NAME=${{ env.APP_NAME }}" >> "GITHUB_OUTPUT"
-        echo "AUTOR=${{ env.AUTOR }}" >> "GITHUB_OUTPUT"
-        echo "DATE=${{ env.DATE }}" >> "GITHUB_OUTPUT"
-
-    - name: job 00
-      run: |
+        echo "APP_NAME=${{ env.APP_NAME }}" >> "$GITHUB_OUTPUT"
+        echo "AUTOR=${{ env.AUTOR }}" >> "$GITHUB_OUTPUT"
+        echo "DATE=${{ env.DATE }}" >> "$GITHUB_OUTPUT"
+        echo "-------------------------------------------------"
         echo ${{ env.APP_NAME }}
         echo ${{ env.AUTOR }}
         echo ${{ env.DATE }}
-        echo "----------------------------------"
+
+    # - name: job 00
+    #   run: |
+    #     echo ${{ env.APP_NAME }}
+    #     echo ${{ env.AUTOR }}
+    #     echo ${{ env.DATE }}
+    #     echo "----------------------------------"
 
 
   # job_01:
