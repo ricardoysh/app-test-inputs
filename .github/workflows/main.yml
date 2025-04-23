@@ -19,7 +19,7 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
-        
+
     - name: set variables
       id: set-variables
       run: |
@@ -47,29 +47,31 @@ jobs:
     - name: Output YAML Variables
       run: |
         echo "PROJECT_ID: ${{ env.PROJECT_ID }}"
+        echo "AMBIENT: ${{ env.AMBIENT }}"
+        echo "LOCAL: ${{ env.LOCAL }}"
+        echo "ORG: ${{ env.ORG }}"
+
+  # call-prereqs:
+  #   needs: set-vars
+  #   uses: ./.github/workflows/prerequisites.yml
+  #   with:
+  #     APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
+  #     AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
+  #     DATE: ${{ needs.set-vars.outputs.DATE }}
 
 
-  call-prereqs:
-    needs: set-vars
-    uses: ./.github/workflows/prerequisites.yml
-    with:
-      APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
-      AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
-      DATE: ${{ needs.set-vars.outputs.DATE }}
+  # job_02:
+  #   needs: set-vars
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Display Variables
+  #       run: |
+  #         echo "----- Variables: --------"
+  #         echo "NOME DO APP: $APP_NAME"
+  #         echo "AUTOR: $AUTOR"
+  #         echo "DATA: $DATE"
 
-
-  job_02:
-    needs: set-vars
-    runs-on: macos-latest
-    steps:
-      - name: Display Variables
-        run: |
-          echo "----- Variables: --------"
-          echo "NOME DO APP: $APP_NAME"
-          echo "AUTOR: $AUTOR"
-          echo "DATA: $DATE"
-
-        env:
-          APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
-          AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
-          DATE: ${{ needs.set-vars.outputs.DATE }}
+  #       env:
+  #         APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
+  #         AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
+  #         DATE: ${{ needs.set-vars.outputs.DATE }}
