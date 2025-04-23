@@ -35,6 +35,15 @@ jobs:
         echo "ORG_NAME: $ORG_NAME"
         echo "PROJECT_NAME: $PROJECT_NAME"
         echo "Start by: $GITHUB_ACTOR"
+      
+    - name: Load YAML Variables
+      uses: doughepi/yaml-env-action
+      with:
+        files: env1.yml
+
+    - name: Output YAML Variables
+      run: |
+        echo "PROJECT_ID: ${{ env.PROJECT_ID }}"
 
 
   call-prereqs:
