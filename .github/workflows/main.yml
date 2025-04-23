@@ -9,7 +9,7 @@ on:
   push
   
 jobs:
-  job_00:
+  set-variables:
     runs-on: macos-latest
     outputs:
       APP_NAME: ${{ steps.set-variables.outputs.APP_NAME }}
@@ -28,16 +28,9 @@ jobs:
         echo ${{ env.AUTOR }}
         echo ${{ env.DATE }}
 
-    # - name: job 00
-    #   run: |
-    #     echo ${{ env.APP_NAME }}
-    #     echo ${{ env.AUTOR }}
-    #     echo ${{ env.DATE }}
-    #     echo "----------------------------------"
 
-
-  job_01:
-    needs: job_00
+  call-prereqs:
+    needs: set-variables
     uses: ./.github/workflows/prerequisites.yml
     with:
       APP_NAME: ${{ needs.job_00.outputs.APP_NAME }}
@@ -46,7 +39,7 @@ jobs:
 
 
   job_02:
-    needs: job_01
+    needs: set-variables
     runs-on: macos-latest
     steps:
       - name: Display Variables
