@@ -37,7 +37,7 @@ jobs:
         echo "Start by: $GITHUB_ACTOR"
       
     - name: Load YAML Variables
-      uses: doughepi/yaml-env-action
+      uses: doughepi/yaml-env-action@v1.0.0
       with:
         files: ./env1.yml
 
