@@ -28,6 +28,7 @@ jobs:
         echo ${{ env.AUTOR }}
         echo ${{ env.DATE }}
         echo "NAME > $CODESPACE_NAME"
+        echo "REPOSITORY > $GITHUB_REPOSITORY"
 
 
   call-prereqs:
