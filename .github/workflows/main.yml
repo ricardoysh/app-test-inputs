@@ -51,6 +51,16 @@ jobs:
         echo "LOCAL: ${{ env.LOCAL }}"
         echo "ORG: ${{ env.ORG }}"
 
+  call-prereqs:
+    needs: set-vars
+    
+    uses: ./.github/workflows/prerequisites.yml
+    with:
+      APP_NAME: ${{ env.PROJECT_ID }}
+      AMBIENT: ${{ env.AMBIENT }}
+      LOCAL: ${{ env.LOCAL }}
+      ORG: ${{ env.ORG }}
+
   # call-prereqs:
   #   needs: set-vars
   #   uses: ./.github/workflows/prerequisites.yml

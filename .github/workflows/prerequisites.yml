@@ -3,16 +3,18 @@ name: prerequisites
 on:
   workflow_call:
     inputs:
-      APP_NAME:
+      PROJECT_ID:
         required: true
         type: string
-      AUTOR:
+      AMBIENT:
         required: true
         type: string
-      DATE:
+      LOCAL:
         required: true
         type: string
-
+      ORG:
+        required: true
+        type: string
 
 jobs:
   prereqs:
