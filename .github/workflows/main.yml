@@ -9,7 +9,7 @@ on:
   push
   
 jobs:
-  set-variables:
+  setup-variables:
     runs-on: macos-latest
     outputs:
       APP_NAME: ${{ steps.set-variables.outputs.APP_NAME }}
