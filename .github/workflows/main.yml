@@ -33,9 +33,9 @@ jobs:
     needs: set-vars
     uses: ./.github/workflows/prerequisites.yml
     with:
-      APP_NAME: ${{ needs.job_00.outputs.APP_NAME }}
-      AUTOR: ${{ needs.job_00.outputs.AUTOR }}
-      DATE: ${{ needs.job_00.outputs.DATE }}
+      APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
+      AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
+      DATE: ${{ needs.set-vars.outputs.DATE }}
 
 
   job_02:
@@ -48,6 +48,6 @@ jobs:
           echo "$APP_NAME // $AUTOR // $DATE"
 
         env:
-          APP_NAME: ${{ needs.job_00.outputs.APP_NAME }}
-          AUTOR: ${{ needs.job_00.outputs.AUTOR }}
-          DATE: ${{ needs.job_00.outputs.DATE }}
+          APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
+          AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
+          DATE: ${{ needs.set-vars.outputs.DATE }}
