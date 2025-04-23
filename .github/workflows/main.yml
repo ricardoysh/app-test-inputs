@@ -36,9 +36,13 @@ jobs:
     #     echo "----------------------------------"
 
 
-  # job_01:
-  #   needs: job_00
-  #   uses: ./.github/workflows/prerequisites.yml
+  job_01:
+    needs: job_00
+    uses: ./.github/workflows/prerequisites.yml
+    with:
+      APP_NAME: ${{ needs.job_00.outputs.APP_NAME }}
+      AUTOR: ${{ needs.job_00.outputs.AUTOR }}
+      DATE: ${{ needs.job_00.outputs.DATE }}
 
 
   job_02:

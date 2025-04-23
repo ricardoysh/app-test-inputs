@@ -1,7 +1,18 @@
-name: prerequisites
+name: set-variables
 
 on:
-  workflow_call
+  workflow_call:
+    inputs:
+      APP_NAME:
+        required: true
+        type: string
+      AUTOR:
+        required: true
+        type: string
+      DATE:
+        required: true
+        type: string
+
 
 jobs:
   set-variables:
@@ -19,3 +30,7 @@ jobs:
           echo "${{ vars.APP_NAME }}"
           echo "${{ vars.AUTOR }}"
           echo "${{ vars.DATE }}"
+          echo "----------------------------------------------"
+          echo "${{ inputs.APP_NAME }}"
+          echo "${{ inputs.AUTOR }}"
+          echo "${{ inputs.DATE }}"
