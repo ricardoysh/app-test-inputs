@@ -29,8 +29,8 @@ jobs:
         echo ${{ env.DATE }}
         echo "NAME > $CODESPACE_NAME"
         echo "REPOSITORY > $GITHUB_REPOSITORY"
-        export "ORG_NAME=$(GITHUB_REPOSITORY | cut -f1 -d"/")"
-        export "PROJECT_NAME=$(GITHUB_REPOSITORY | cut -f2 -d"/")"
+        export echo "ORG_NAME=$(GITHUB_REPOSITORY | cut -f1 -d"/")"
+        export echo "PROJECT_NAME=$(GITHUB_REPOSITORY | cut -f2 -d"/")"
         echo "----------------- output ---------------------"
         echo "ORG_NAME: $ORG_NAME"
         echo "PROJECT_NAME: $PROJECT_NAME"
