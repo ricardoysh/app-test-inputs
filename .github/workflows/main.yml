@@ -45,7 +45,9 @@ jobs:
       - name: Display Variables
         run: |
           echo "----- Variables: --------"
-          echo "$APP_NAME // $AUTOR // $DATE"
+          echo "NOME DO APP: $APP_NAME"
+          echo "AUTOR: $AUTOR"
+          echo "DATA: $DATE"
 
         env:
           APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
