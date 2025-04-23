@@ -9,7 +9,7 @@ on:
   push
   
 jobs:
-  setup-variables:
+  set-vars:
     runs-on: macos-latest
     outputs:
       APP_NAME: ${{ steps.set-variables.outputs.APP_NAME }}
@@ -30,7 +30,7 @@ jobs:
 
 
   call-prereqs:
-    needs: set-variables
+    needs: set-vars
     uses: ./.github/workflows/prerequisites.yml
     with:
       APP_NAME: ${{ needs.job_00.outputs.APP_NAME }}
@@ -39,7 +39,7 @@ jobs:
 
 
   job_02:
-    needs: set-variables
+    needs: set-vars
     runs-on: macos-latest
     steps:
       - name: Display Variables
