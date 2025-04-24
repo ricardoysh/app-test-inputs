@@ -15,6 +15,8 @@ jobs:
       APP_NAME: ${{ steps.set-variables.outputs.APP_NAME }}
       AUTOR: ${{ steps.set-variables.outputs.AUTOR }}
       DATE: ${{ steps.set-variables.outputs.DATE }}
+      ORG_NAME: ${{ steps.set-variables.outputs.ORG_NAME }}
+      PROJECT_NAME: ${{ steps.set-variables.outputs.PROJECT_NAME }}
 
     steps:
     - name: Checkout Code
@@ -27,47 +29,41 @@ jobs:
         echo "AUTOR=${{ env.AUTOR }}" >> "$GITHUB_OUTPUT"
         echo "DATE=${{ env.DATE }}" >> "$GITHUB_OUTPUT"
         echo "-------------------------------------------------"
-        echo ${{ env.APP_NAME }}
-        echo ${{ env.AUTOR }}
-        echo ${{ env.DATE }}
-        echo "NAME > $CODESPACE_NAME"
+        # echo ${{ env.APP_NAME }}
+        # echo ${{ env.AUTOR }}
+        # echo ${{ env.DATE }}
+
         echo "REPOSITORY > $GITHUB_REPOSITORY"
-        export "ORG_NAME=$(echo $GITHUB_REPOSITORY | cut -f1 -d"/")"
-        export "PROJECT_NAME=$(echo $GITHUB_REPOSITORY | cut -f2 -d"/")"
+        echo "ORG_NAME=$(echo $GITHUB_REPOSITORY | cut -f1 -d"/")" >> $GITHUB_OUTPUT
+        echo "PROJECT_NAME=$(echo $GITHUB_REPOSITORY | cut -f2 -d"/")" >> $GITHUB_OUTPUT
         echo "----------------- output ---------------------"
         echo "ORG_NAME: $ORG_NAME"
         echo "PROJECT_NAME: $PROJECT_NAME"
         echo "Start by: $GITHUB_ACTOR"
       
-    - name: Load YAML Variables
-      uses: doughepi/yaml-env-action@v1.0.0
-      with:
-        files: ./env1.yml
+    # - name: Load YAML Variables
+    #   uses: doughepi/yaml-env-action@v1.0.0
+    #   with:
+    #     files: ./env1.yml
 
-    - name: Output YAML Variables
-      run: |
-        echo "PROJECT_ID: ${{ env.PROJECT_ID }}"
-        echo "AMBIENT: ${{ env.AMBIENT }}"
-        echo "LOCAL: ${{ env.LOCAL }}"
-        echo "ORG: ${{ env.ORG }}"
+    # - name: Output YAML Variables
+    #   id: xpto
+    #   run: |
+    #     echo "PROJECT_ID: ${{ env.PROJECT_ID }}"
+    #     echo "AMBIENT: ${{ env.AMBIENT }}"
+    #     echo "LOCAL: ${{ env.LOCAL }}"
+    #     echo "ORG: ${{ env.ORG }}"
 
+    
   call-prereqs:
     needs: set-vars
-    
     uses: ./.github/workflows/prerequisites.yml
     with:
-      APP_NAME: ${{ env.PROJECT_ID }}
-      AMBIENT: ${{ env.AMBIENT }}
-      LOCAL: ${{ env.LOCAL }}
-      ORG: ${{ env.ORG }}
-
-  # call-prereqs:
-  #   needs: set-vars
-  #   uses: ./.github/workflows/prerequisites.yml
-  #   with:
-  #     APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
-  #     AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
-  #     DATE: ${{ needs.set-vars.outputs.DATE }}
+      APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
+      AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
+      DATE: ${{ needs.set-vars.outputs.DATE }}
+      ORG_NAME: ${{ needs.set-vars.outputs.ORG_NAME }}
+      PROJECT_NAME: ${{ needs.set-vars.outputs.PROJECT_NAME }}
 
 
   # job_02:
