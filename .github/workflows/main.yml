@@ -6,11 +6,16 @@ env:
   DATE: '22/04/2025'
 
 on:
-  push
+  workflow_dispatch:
+  # push:
+    outputs:
+      PROJECT_NAME:
+        value: ${{ jobs.set-vars.outputs.PROJECT_NAME }}
   
 jobs:
   set-vars:
     runs-on: macos-latest
+
     outputs:
       APP_NAME: ${{ steps.set-variables.outputs.APP_NAME }}
       AUTOR: ${{ steps.set-variables.outputs.AUTOR }}
