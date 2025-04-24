@@ -74,6 +74,17 @@ jobs:
           echo "ORG_NAME: ${{ needs.set-vars.outputs.ORG_NAME }}"
           echo "PROJECT: ${{ needs.set-vars.outputs.PROJECT_NAME }}"
 
+  inspect:
+    runs-on: macos-latest
+    needs: secondary
+    steps:
+      - name: Run Sonar Scanner
+        run: |
+          echo "## Running Sonar Scanner..."
+          echo ""
+          echo ""
+          echo "ORG_NAME: ${{ needs.set-vars.outputs.ORG_NAME }}"
+          echo "PROJECT: ${{ needs.set-vars.outputs.PROJECT_NAME }}"
   # job_02:
   #   needs: set-vars
   #   runs-on: macos-latest
