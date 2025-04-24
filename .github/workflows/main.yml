@@ -6,11 +6,10 @@ env:
   DATE: '22/04/2025'
 
 on:
-  workflow_dispatch:
-  # push:
-    outputs:
-      PROJECT_NAME:
-        value: ${{ jobs.set-vars.outputs.PROJECT_NAME }}
+  push
+    # outputs:
+    #   PROJECT_NAME:
+    #     value: ${{ jobs.set-vars.outputs.PROJECT_NAME }}
   
 jobs:
   set-vars:
