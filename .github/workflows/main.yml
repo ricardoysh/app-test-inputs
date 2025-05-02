@@ -10,6 +10,7 @@ on:
     # outputs:
     #   PROJECT_NAME:
     #     value: ${{ jobs.set-vars.outputs.PROJECT_NAME }}
+
   
 jobs:
   set-vars:
