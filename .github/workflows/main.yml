@@ -61,7 +61,7 @@ jobs:
 
     
   call-prereqs:
-    needs: set-vars
+    needs: init
     uses: ./.github/workflows/prerequisites.yml
     with:
       APP_NAME: ${{ vars.APP_NAME }}
