@@ -65,6 +65,14 @@ jobs:
     #     echo "LOCAL: ${{ env.LOCAL }}"
     #     echo "ORG: ${{ env.ORG }}"
 
+  job_02:
+    runs-on: macos-latest
+    steps:
+      - name: DISPLAY VARS JOB 2
+        run: |
+          echo "----------------------------------------------"
+          echo "APP_NAME ---------------> ${{ env.APP_NAME }}"
+          echo "----------------------------------------------"
     
   call-prereqs:
     needs: init
