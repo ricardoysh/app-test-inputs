@@ -64,11 +64,11 @@ jobs:
     needs: set-vars
     uses: ./.github/workflows/prerequisites.yml
     with:
-      APP_NAME: ${{ env.APP_NAME }}
-      AUTOR: ${{ env.AUTOR }}
-      DATE: ${{ env.DATE }}
-      # ORG_NAME: ${{ env.ORG_NAME }}
-      # PROJECT_NAME: ${{ env.PROJECT_NAME }}
+      APP_NAME: ${{ vars.APP_NAME }}
+      AUTOR: ${{ vars.AUTOR }}
+      DATE: ${{ vars.DATE }}
+      # ORG_NAME: ${{ vars.ORG_NAME }}
+      # PROJECT_NAME: ${{ vars.PROJECT_NAME }}
 
   # secondary:
   #   runs-on: macos-latest
