@@ -66,6 +66,7 @@ jobs:
     #     echo "ORG: ${{ env.ORG }}"
 
   job_02:
+    needs: init
     runs-on: macos-latest
     steps:
       - name: DISPLAY VARS JOB 2
@@ -74,8 +75,8 @@ jobs:
           echo "APP_NAME ---------------> ${{ env.APP_NAME }}"
           echo "----------------------------------------------"
     
-  call-prereqs:
-    needs: init
+  call-prerequisites:
+    needs: job_02
     uses: ./.github/workflows/prerequisites.yml
     with:
       APP_NAME: ${{ needs.init.outputs.APP_NAME }}
