@@ -24,7 +24,7 @@ on:
       #   type: string
 
 jobs:
-  prereqs:
+  deploy:
     runs-on: macos-latest
 
     steps:
