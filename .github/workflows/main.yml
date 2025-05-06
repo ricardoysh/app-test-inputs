@@ -88,7 +88,7 @@ jobs:
       DATE: ${{ needs.set-vars.outputs.DATE }}
 
   deploy:
-    needs: call-prerequisites
+    needs: set-vars
     uses: ./.github/workflows/deploy.yml
     with:
       APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
