@@ -26,6 +26,12 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
+    
+    - name: DISPLAY VARS 1
+      run: |
+        echo "APP_NAME=${{ env.APP_NAME }}"
+        echo "AUTOR=${{ env.AUTOR }}"
+        echo "DATE=${{ env.DATE }}"
 
     # - name: set variables
     #   id: set-variables
