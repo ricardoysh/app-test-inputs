@@ -76,7 +76,7 @@ jobs:
           echo "----------------------------------------------"
     
   call-prerequisites:
-    needs: job_02
+    needs: init
     uses: ./.github/workflows/prerequisites.yml
     with:
       APP_NAME: ${{ needs.init.outputs.APP_NAME }}
