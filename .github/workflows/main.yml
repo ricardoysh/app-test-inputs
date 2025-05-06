@@ -14,7 +14,7 @@ on:
 
   
 jobs:
-  init:
+  set-vars:
     runs-on: macos-latest
 
     outputs:
@@ -70,7 +70,7 @@ jobs:
     #     echo "ORG: ${{ env.ORG }}"
 
   job_02:
-    needs: init
+    needs: set-vars
     runs-on: macos-latest
     steps:
       - name: DISPLAY VARS JOB 2
@@ -80,21 +80,21 @@ jobs:
           echo "----------------------------------------------"
     
   call-prerequisites:
-    needs: init
+    needs: set-vars
     uses: ./.github/workflows/prerequisites.yml
     with:
-      APP_NAME: ${{ needs.init.outputs.APP_NAME }}
-      AUTOR: ${{ needs.init.outputs.AUTOR }}
-      DATE: ${{ needs.init.outputs.DATE }}
+      APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
+      AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
+      DATE: ${{ needs.set-vars.outputs.DATE }}
 
   deploy:
     needs: call-prerequisites
     uses: ./.github/workflows/deploy.yml
     with:
-      APP_NAME: ${{ needs.init.outputs.APP_NAME }}
-      AUTOR: ${{ needs.init.outputs.AUTOR }}
-      DATE: ${{ needs.init.outputs.DATE }}
-      ORG_NAME: ${{ needs.init.outputs.ORG_NAME }}
+      APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
+      AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
+      DATE: ${{ needs.set-vars.outputs.DATE }}
+      ORG_NAME: ${{ needs.set-vars.outputs.ORG_NAME }}
 
   # secondary:
   #   runs-on: macos-latest
