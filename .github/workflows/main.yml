@@ -1,8 +1,8 @@
 name: 'App Test With Inputs'
 
 env:
-  APP_NAME: 'app-test-ios-develop'
-  AUTOR: 'Steve Jobs'
+  APP_NAME: 'MY APP TEST IOS'
+  AUTOR: 'STEVE JOBS'
   DATE: '22/04/2025'
 
 on:
@@ -13,38 +13,38 @@ on:
 
   
 jobs:
-  set-vars:
+  init:
     runs-on: macos-latest
 
-    outputs:
-      APP_NAME: ${{ steps.set-variables.outputs.APP_NAME }}
-      AUTOR: ${{ steps.set-variables.outputs.AUTOR }}
-      DATE: ${{ steps.set-variables.outputs.DATE }}
-      ORG_NAME: ${{ steps.set-variables.outputs.ORG_NAME }}
-      PROJECT_NAME: ${{ steps.set-variables.outputs.PROJECT_NAME }}
+    # outputs:
+    #   APP_NAME: ${{ steps.set-variables.outputs.APP_NAME }}
+    #   AUTOR: ${{ steps.set-variables.outputs.AUTOR }}
+    #   DATE: ${{ steps.set-variables.outputs.DATE }}
+    #   ORG_NAME: ${{ steps.set-variables.outputs.ORG_NAME }}
+    #   PROJECT_NAME: ${{ steps.set-variables.outputs.PROJECT_NAME }}
 
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: set variables
-      id: set-variables
-      run: |
-        echo "APP_NAME=${{ env.APP_NAME }}" >> "$GITHUB_OUTPUT"
-        echo "AUTOR=${{ env.AUTOR }}" >> "$GITHUB_OUTPUT"
-        echo "DATE=${{ env.DATE }}" >> "$GITHUB_OUTPUT"
-        echo "-------------------------------------------------"
-        # echo ${{ env.APP_NAME }}
-        # echo ${{ env.AUTOR }}
-        # echo ${{ env.DATE }}
+    # - name: set variables
+    #   id: set-variables
+    #   run: |
+    #     echo "APP_NAME=${{ env.APP_NAME }}" >> "$GITHUB_OUTPUT"
+    #     echo "AUTOR=${{ env.AUTOR }}" >> "$GITHUB_OUTPUT"
+    #     echo "DATE=${{ env.DATE }}" >> "$GITHUB_OUTPUT"
+    #     echo "-------------------------------------------------"
+    #     # echo ${{ env.APP_NAME }}
+    #     # echo ${{ env.AUTOR }}
+    #     # echo ${{ env.DATE }}
 
-        echo "REPOSITORY > $GITHUB_REPOSITORY"
-        echo "ORG_NAME=$(echo $GITHUB_REPOSITORY | cut -f1 -d"/")" >> $GITHUB_OUTPUT
-        echo "PROJECT_NAME=$(echo $GITHUB_REPOSITORY | cut -f2 -d"/")" >> $GITHUB_OUTPUT
-        echo "----------------- output ---------------------"
-        echo "ORG_NAME: $ORG_NAME"
-        echo "PROJECT_NAME: $PROJECT_NAME"
-        echo "Start by: $GITHUB_ACTOR"
+    #     echo "REPOSITORY > $GITHUB_REPOSITORY"
+    #     echo "ORG_NAME=$(echo $GITHUB_REPOSITORY | cut -f1 -d"/")" >> $GITHUB_OUTPUT
+    #     echo "PROJECT_NAME=$(echo $GITHUB_REPOSITORY | cut -f2 -d"/")" >> $GITHUB_OUTPUT
+    #     echo "----------------- output ---------------------"
+    #     echo "ORG_NAME: $ORG_NAME"
+    #     echo "PROJECT_NAME: $PROJECT_NAME"
+    #     echo "Start by: $GITHUB_ACTOR"
       
     # - name: Load YAML Variables
     #   uses: doughepi/yaml-env-action@v1.0.0
@@ -64,32 +64,32 @@ jobs:
     needs: set-vars
     uses: ./.github/workflows/prerequisites.yml
     with:
-      APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
-      AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
-      DATE: ${{ needs.set-vars.outputs.DATE }}
-      ORG_NAME: ${{ needs.set-vars.outputs.ORG_NAME }}
-      PROJECT_NAME: ${{ needs.set-vars.outputs.PROJECT_NAME }}
+      APP_NAME: ${{ env.APP_NAME }}
+      AUTOR: ${{ env.AUTOR }}
+      DATE: ${{ env.DATE }}
+      # ORG_NAME: ${{ env.ORG_NAME }}
+      # PROJECT_NAME: ${{ env.PROJECT_NAME }}
 
-  secondary:
-    runs-on: macos-latest
-    needs: set-vars
-    steps:
-      - name: secondary job
-        run: |
-          echo "ORG_NAME: ${{ needs.set-vars.outputs.ORG_NAME }}"
-          echo "PROJECT: ${{ needs.set-vars.outputs.PROJECT_NAME }}"
+  # secondary:
+  #   runs-on: macos-latest
+  #   needs: set-vars
+  #   steps:
+  #     - name: secondary job
+  #       run: |
+  #         echo "ORG_NAME: ${{ needs.set-vars.outputs.ORG_NAME }}"
+  #         echo "PROJECT: ${{ needs.set-vars.outputs.PROJECT_NAME }}"
 
-  inspect:
-    runs-on: macos-latest
-    needs: secondary
-    steps:
-      - name: Run Sonar Scanner
-        run: |
-          echo "## Running Sonar Scanner..."
-          echo ""
-          echo ""
-          echo "ORG_NAME: ${{ needs.set-vars.outputs.ORG_NAME }}"
-          echo "PROJECT: ${{ needs.set-vars.outputs.PROJECT_NAME }}"
+  # inspect:
+  #   runs-on: macos-latest
+  #   needs: secondary
+  #   steps:
+  #     - name: Run Sonar Scanner
+  #       run: |
+  #         echo "## Running Sonar Scanner..."
+  #         echo ""
+  #         echo ""
+  #         echo "ORG_NAME: ${{ needs.set-vars.outputs.ORG_NAME }}"
+  #         echo "PROJECT: ${{ needs.set-vars.outputs.PROJECT_NAME }}"
   # job_02:
   #   needs: set-vars
   #   runs-on: macos-latest

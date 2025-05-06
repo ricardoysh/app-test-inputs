@@ -12,24 +12,25 @@ on:
       DATE:
         required: true
         type: string
-      ORG_NAME:
-        required: true
-        type: string
-      PROJECT_NAME:
-        required: true
-        type: string
+      # ORG_NAME:
+      #   required: true
+      #   type: string
+      # PROJECT_NAME:
+      #   required: true
+      #   type: string
 
 jobs:
   prereqs:
     runs-on: macos-latest
 
     steps:
-      - name: Show Variables
+      - name: Show Variables with inputs
         run: |
 
           echo "----------------------------------------------"
+
           echo "${{ inputs.APP_NAME }}"
           echo "${{ inputs.AUTOR }}"
           echo "${{ inputs.DATE }}"
-          echo "${{ inputs.ORG_NAME}}"
-          echo "${{ inputs.PROJECT_NAME }}"
+          # echo "${{ inputs.ORG_NAME}}"
+          # echo "${{ inputs.PROJECT_NAME }}"
