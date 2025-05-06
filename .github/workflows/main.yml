@@ -4,6 +4,7 @@ env:
   APP_NAME: 'MY APP TEST IOS'
   AUTOR: 'STEVE JOBS'
   DATE: '22/04/2025'
+  ORG_NAME: 'RICO CORPORATION'
 
 on:
   push
@@ -20,18 +21,20 @@ jobs:
       APP_NAME: ${{ steps.set-variables.outputs.APP_NAME }}
       AUTOR: ${{ steps.set-variables.outputs.AUTOR }}
       DATE: ${{ steps.set-variables.outputs.DATE }}
+      ORG_NAME: ${{ steps.set-variables.outputs.ORG_NAME }}
     #   ORG_NAME: ${{ steps.set-variables.outputs.ORG_NAME }}
     #   PROJECT_NAME: ${{ steps.set-variables.outputs.PROJECT_NAME }}
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+    # - name: Checkout Code
+    #   uses: actions/checkout@v4
     
-    - name: DISPLAY VARS 1
+    - name: DISPLAY VARS 1 SAME JOB YAML
       run: |
         echo "APP_NAME=${{ env.APP_NAME }}"
         echo "AUTOR=${{ env.AUTOR }}"
         echo "DATE=${{ env.DATE }}"
+        echo "ORG_NAME=${{ env.ORG_NAME }}"
 
     - name: set variables
       id: set-variables
@@ -39,6 +42,7 @@ jobs:
         echo "APP_NAME=${{ env.APP_NAME }}" >> "$GITHUB_OUTPUT"
         echo "AUTOR=${{ env.AUTOR }}" >> "$GITHUB_OUTPUT"
         echo "DATE=${{ env.DATE }}" >> "$GITHUB_OUTPUT"
+        echo "ORG_NAME=${{ env.ORG_NAME }}" >> "$GITHUB_OUTPUT"
     #     echo "-------------------------------------------------"
     #     # echo ${{ env.APP_NAME }}
     #     # echo ${{ env.AUTOR }}
@@ -83,11 +87,14 @@ jobs:
       AUTOR: ${{ needs.init.outputs.AUTOR }}
       DATE: ${{ needs.init.outputs.DATE }}
 
-      # APP_NAME: ${{ vars.APP_NAME }}
-      # AUTOR: ${{ vars.AUTOR }}
-      # DATE: ${{ vars.DATE }}
-      # ORG_NAME: ${{ vars.ORG_NAME }}
-      # PROJECT_NAME: ${{ vars.PROJECT_NAME }}
+  deploy:
+    needs: call-prerequisites
+    uses: ./.github/workflows/deploy.yml
+    with:
+      APP_NAME: ${{ needs.init.outputs.APP_NAME }}
+      AUTOR: ${{ needs.init.outputs.AUTOR }}
+      DATE: ${{ needs.init.outputs.DATE }}
+      ORG_NAME: ${{ needs.init.outputs.ORG_NAME }}
 
   # secondary:
   #   runs-on: macos-latest

@@ -1,0 +1,37 @@
+name: prerequisites
+
+on:
+  workflow_call:
+    inputs:
+      APP_NAME:
+        required: true
+        type: string
+      AUTOR:
+        required: true
+        type: string
+      DATE:
+        required: true
+        type: string
+      ORG_NAME:
+        required: true
+        type: string
+
+      # ORG_NAME:
+      #   required: true
+      #   type: string
+      # PROJECT_NAME:
+      #   required: true
+      #   type: string
+
+jobs:
+  prereqs:
+    runs-on: macos-latest
+
+    steps:
+      - name: Show Variables with inputs
+        run: |
+
+          echo "----------------------------------------------"
+
+          echo "${{ inputs.ORG_NAME }}"
+
