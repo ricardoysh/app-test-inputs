@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: DISPLAY VARS
         run: |
-          echo "$ORG_NAME"
+          echo "ORG_NAME=====> $ORG_NAME"
 
   # set-vars:
   #   runs-on: macos-latest
@@ -141,8 +141,8 @@ jobs:
   Job_1000:
     needs: second
     uses: ./.github/workflows/prerequisites.yml
-    with:
-      ORG_NAME: $ORG_NAME
+    # with:
+    #   ORG_NAME: $ORG_NAME
   
   # call-prerequisites:
   #   needs: set-vars
