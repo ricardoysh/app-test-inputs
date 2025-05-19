@@ -3,18 +3,18 @@ name: prerequisites
 on:
   workflow_call:
     inputs:
-      APP_NAME:
-        required: true
-        type: string
-      AUTOR:
-        required: true
-        type: string
-      DATE:
-        required: true
-        type: string
-      # ORG_NAME:
+      # APP_NAME:
       #   required: true
       #   type: string
+      # AUTOR:
+      #   required: true
+      #   type: string
+      # DATE:
+      #   required: true
+      #   type: string
+      ORG_NAME:
+        required: true
+        type: string
       # PROJECT_NAME:
       #   required: true
       #   type: string
@@ -32,5 +32,5 @@ jobs:
           echo "${{ inputs.APP_NAME }}"
           echo "${{ inputs.AUTOR }}"
           echo "${{ inputs.DATE }}"
-          # echo "${{ inputs.ORG_NAME}}"
+          echo "${{ inputs.ORG_NAME}}"
           # echo "${{ inputs.PROJECT_NAME }}"

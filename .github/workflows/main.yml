@@ -112,6 +112,7 @@ jobs:
         run: |
          echo "1.-----> ${{ env.APP_NAME }}"
          echo "2.-----> ${{ vars.APP_NAME }}"
+         echo "ORG_NAME: ${{ env.ORG_NAME}}"
 
       - name: Downloads Artifacts
         uses: actions/download-artifact@v4
@@ -132,6 +133,13 @@ jobs:
         run: |
           cat ./archive/testes.txt
 
+  Job_1000:
+    needs: job_04
+    uses: ./.github/workflows/prerequisites.yml
+    with:
+      ORG_NAME: ${{ env.ORG_NAME }}
+
+  
   # call-prerequisites:
   #   needs: set-vars
   #   uses: ./.github/workflows/prerequisites.yml
