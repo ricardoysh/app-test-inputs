@@ -43,6 +43,8 @@ jobs:
         echo "AUTOR=${{ env.AUTOR }}" >> "$GITHUB_OUTPUT"
         echo "DATE=${{ env.DATE }}" >> "$GITHUB_OUTPUT"
         echo "ORG_NAME=${{ env.ORG_NAME }}" >> "$GITHUB_OUTPUT"
+
+        echo "ORG_NAME=${{ env.ORG_NAME }}" >> "$GITHUB_ENV"
     #     echo "-------------------------------------------------"
     #     # echo ${{ env.APP_NAME }}
     #     # echo ${{ env.AUTOR }}
@@ -78,6 +80,7 @@ jobs:
           echo "----------------------------------------------"
           echo "1.-----> ${{ env.APP_NAME }}"
           echo "2.-----> ${{ vars.APP_NAME }}"
+          "echo "3.-----> $ORG_NAME"
           echo "----------------------------------------------"
   
   job_03:
@@ -88,6 +91,8 @@ jobs:
         run: |
           echo "1.-----> ${{ env.APP_NAME }}"
           echo "2.-----> ${{ vars.APP_NAME }}"
+          echo "3.-----> $ORG_NAME"
+
 
       - name: Run tests
         run: |
@@ -113,6 +118,7 @@ jobs:
          echo "1.-----> ${{ env.APP_NAME }}"
          echo "2.-----> ${{ vars.APP_NAME }}"
          echo "ORG_NAME: ${{ env.ORG_NAME}}"
+         echo "3.-----> $ORG_NAME"
 
       - name: Downloads Artifacts
         uses: actions/download-artifact@v4
@@ -138,7 +144,8 @@ jobs:
     uses: ./.github/workflows/prerequisites.yml
     with:
       #ORG_NAME: ${{ vars.ORG_NAME }}
-      ORG_NAME: ${{ env.ORG_NAME }}
+      #ORG_NAME: ${{ env.ORG_NAME }}
+      ORG_NAME: $ORG_NAME"
   
   # call-prerequisites:
   #   needs: set-vars
