@@ -76,13 +76,19 @@ jobs:
       - name: DISPLAY VARS JOB 2
         run: |
           echo "----------------------------------------------"
-          echo "APP_NAME ---------------> ${{ env.APP_NAME }}"
+          echo "1.-----> ${{ env.APP_NAME }}"
+          echo "2.-----> ${{ vars.APP_NAME }}"
           echo "----------------------------------------------"
   
   job_03:
     needs: job_02
     runs-on: macos-latest
     steps:
+      - name: DISPLAY VARS
+        run: |
+          echo "1.-----> ${{ env.APP_NAME }}"
+          echo "2.-----> ${{ vars.APP_NAME }}"
+
       - name: Run tests
         run: |
           mkdir -p archive
@@ -102,6 +108,11 @@ jobs:
     needs: job_03
     runs-on: macos-latest
     steps:
+      - name: DISPLAY VARS
+        run: |
+         echo "1.-----> ${{ env.APP_NAME }}"
+         echo "2.-----> ${{ vars.APP_NAME }}"
+
       - name: Downloads Artifacts
         uses: actions/download-artifact@v4
         with:
