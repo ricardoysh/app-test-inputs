@@ -29,8 +29,9 @@ jobs:
 
           echo "----------------------------------------------"
 
-          echo "${{ inputs.APP_NAME }}"
-          echo "${{ inputs.AUTOR }}"
-          echo "${{ inputs.DATE }}"
+          # echo "${{ inputs.APP_NAME }}"
+          # echo "${{ inputs.AUTOR }}"
+          # echo "${{ inputs.DATE }}"
           echo "ORG_NAME ----> ${{ inputs.ORG_NAME}}"
+          echo "ORG_NAME ----> $ORG_NAME"
           # echo "${{ inputs.PROJECT_NAME }}"
