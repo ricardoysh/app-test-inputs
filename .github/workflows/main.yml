@@ -44,7 +44,7 @@ jobs:
         echo "DATE=${{ env.DATE }}" >> "$GITHUB_OUTPUT"
         echo "ORG_NAME=${{ env.ORG_NAME }}" >> "$GITHUB_OUTPUT"
 
-        echo "ORG_NAME=${{ env.ORG_NAME }}" >> "$GITHUB_ENV"
+        export $(echo "ORG_NAME=${{ env.ORG_NAME }}")
     #     echo "-------------------------------------------------"
     #     # echo ${{ env.APP_NAME }}
     #     # echo ${{ env.AUTOR }}
