@@ -14,6 +14,22 @@ on:
 
   
 jobs:
+  init-test:
+    runs-on: macos-latest
+    steps:
+      - name: SET VARS
+        run: |
+
+         echo "ORG_NAME=${{ env.ORG_NAME }}" >> $GITHUB_ENV
+
+  second:
+    needs: init-test
+    runs-on: macos-latest
+    steps:
+      - name: DISPLAY VARS
+        run: |
+          echo "$ORG_NAME"
+
   # set-vars:
   #   runs-on: macos-latest
 
@@ -123,7 +139,7 @@ jobs:
   #         cat ./archive/testes.txt
 
   Job_1000:
-
+    needs: second
     uses: ./.github/workflows/prerequisites.yml
     with:
       ORG_NAME: $ORG_NAME
