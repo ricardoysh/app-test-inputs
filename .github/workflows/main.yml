@@ -45,7 +45,10 @@ jobs:
         echo "ORG_NAME=${{ env.ORG_NAME }}" >> "$GITHUB_OUTPUT"
 
         export $(echo "ORG_NAME=${{ env.ORG_NAME }}")
-    #     echo "-------------------------------------------------"
+
+        echo "-------------------- output export -----------------------------"
+        echo "$ORG_NAME"
+        
     #     # echo ${{ env.APP_NAME }}
     #     # echo ${{ env.AUTOR }}
     #     # echo ${{ env.DATE }}
