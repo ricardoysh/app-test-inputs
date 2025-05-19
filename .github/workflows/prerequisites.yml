@@ -32,5 +32,5 @@ jobs:
           echo "${{ inputs.APP_NAME }}"
           echo "${{ inputs.AUTOR }}"
           echo "${{ inputs.DATE }}"
-          echo "${{ inputs.ORG_NAME}}"
+          echo "ORG_NAME ----> ${{ inputs.ORG_NAME}}"
           # echo "${{ inputs.PROJECT_NAME }}"
