@@ -149,10 +149,8 @@ jobs:
   Job_1000:
     needs: job_04
     uses: ./.github/workflows/prerequisites.yml
-    with:
-      #ORG_NAME: ${{ vars.ORG_NAME }}
-      ORG_NAME: ${{ vars.ORG_NAME }}
-      #ORG_NAME: $ORG_NAME
+    # with:
+    #   ORG_NAME: $ORG_NAME
   
   # call-prerequisites:
   #   needs: set-vars
