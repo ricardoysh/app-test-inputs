@@ -137,7 +137,7 @@ jobs:
     needs: job_04
     uses: ./.github/workflows/prerequisites.yml
     with:
-      ORG_NAME: ${{ env.ORG_NAME }}
+      ORG_NAME: ${{ vars.ORG_NAME }}
 
   
   # call-prerequisites:
