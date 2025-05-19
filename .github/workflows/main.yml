@@ -126,7 +126,7 @@ jobs:
 
     uses: ./.github/workflows/prerequisites.yml
     with:
-      ORG_NAME: ${{ vars.ORG_NAME }}
+      ORG_NAME: $ORG_NAME
   
   # call-prerequisites:
   #   needs: set-vars
