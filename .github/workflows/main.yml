@@ -51,7 +51,7 @@ jobs:
 
     
   deploy:
-    needs: prerequisities
+    needs: thyrd
     uses: ./.github/workflows/deploy.yml
     with:
       ORG_NAME: ${{ needs.thyrd.outputs.ORG_NAME_2 }}
