@@ -86,13 +86,17 @@ jobs:
       - name: Run tests
         run: |
           mkdir -p archive
-          echo "Realizando testes" > archive/testes.txt
+          echo "Realizando testes \b Data: 19/05/2025" > archive/testes.txt
       
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: artifacts
-          path: archive
+          path: ./archive
+
+      - name: Test pos Uploads
+        run: |
+          ls -R
 
   job_04:
     needs: job_03
@@ -112,6 +116,10 @@ jobs:
           echo "----------------------------------------------"
           ls -R
           echo "--------------------- FINISH -------------------------"
+ 
+      - name: Final test
+        run: |
+          cat ./archive/testes.txt
 
   # call-prerequisites:
   #   needs: set-vars
