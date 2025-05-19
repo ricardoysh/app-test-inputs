@@ -43,9 +43,16 @@ jobs:
         run: |
           echo "ORG_NAME_2= ${{ env.ORG_NAME }}" >> $GITHUB_OUTPUT
   
-  Job_1000:
+  prerequisities:
     needs: thyrd
     uses: ./.github/workflows/prerequisites.yml
+    with:
+      ORG_NAME: ${{ needs.thyrd.outputs.ORG_NAME_2 }}
+
+    
+  deploy:
+    needs: prerequisities
+    uses: ./.github/workflows/deploy.yml
     with:
       ORG_NAME: ${{ needs.thyrd.outputs.ORG_NAME_2 }}
 
