@@ -30,6 +30,19 @@ jobs:
         run: |
           echo "ORG_NAME=====> $ORG_NAME"
 
+  thyrd:
+    needs: second
+    runs-on: macos-latest
+    
+    outputs:
+      ORG_NAME_2: ${{ steps.set-vars2.outputs.ORG_NAME_2}}
+      
+    steps:
+      - name: set-vars2
+        id: set-vars2
+        run: |
+          echo "ORG_NAME_2= ${{ env.ORG_NAME }}" >> $GITHUB_OUTPUT
+
   # set-vars:
   #   runs-on: macos-latest
 
@@ -139,10 +152,10 @@ jobs:
   #         cat ./archive/testes.txt
 
   Job_1000:
-    needs: second
+    needs: thyrd
     uses: ./.github/workflows/prerequisites.yml
-    # with:
-    #   ORG_NAME: $ORG_NAME
+    with:
+      ORG_NAME: ${{ needs.thyrd.outputs.ORG_NAME_2 }}
   
   # call-prerequisites:
   #   needs: set-vars
