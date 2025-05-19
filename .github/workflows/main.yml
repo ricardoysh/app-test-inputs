@@ -145,7 +145,7 @@ jobs:
     with:
       #ORG_NAME: ${{ vars.ORG_NAME }}
       #ORG_NAME: ${{ env.ORG_NAME }}
-      ORG_NAME: "$ORG_NAME"
+      ORG_NAME: "$(ORG_NAME)"
   
   # call-prerequisites:
   #   needs: set-vars
