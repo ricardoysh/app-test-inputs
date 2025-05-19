@@ -2,7 +2,7 @@ name: prerequisites
 
 on:
   workflow_call:
-    inputs:
+    inputs: {}
       # APP_NAME:
       #   required: true
       #   type: string
@@ -12,9 +12,9 @@ on:
       # DATE:
       #   required: true
       #   type: string
-      ORG_NAME:
-        required: true
-        type: string
+      # ORG_NAME:
+      #   required: true
+      #   type: string
       # PROJECT_NAME:
       #   required: true
       #   type: string
