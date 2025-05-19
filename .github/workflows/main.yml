@@ -38,7 +38,7 @@ jobs:
         echo "DATE=${{ env.DATE }}"
         echo "ORG_NAME=${{ env.ORG_NAME }}"
 
-        export $("ORG_NAME=${{ env.ORG_NAME }}")
+        export ORG_NAME="${{ env.ORG_NAME }}"
 
         echo "-------------------- output export -----------------------------"
         echo "$ORG_NAME"
