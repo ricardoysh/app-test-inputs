@@ -26,8 +26,8 @@ jobs:
     #   PROJECT_NAME: ${{ steps.set-variables.outputs.PROJECT_NAME }}
 
     steps:
-    # - name: Checkout Code
-    #   uses: actions/checkout@v4
+    - name: Checkout Code
+      uses: actions/checkout@v4
     
     - name: DISPLAY VARS 1 SAME JOB YAML
       run: |
@@ -78,23 +78,56 @@ jobs:
           echo "----------------------------------------------"
           echo "APP_NAME ---------------> ${{ env.APP_NAME }}"
           echo "----------------------------------------------"
-    
-  call-prerequisites:
-    needs: set-vars
-    uses: ./.github/workflows/prerequisites.yml
-    with:
-      APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
-      AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
-      DATE: ${{ needs.set-vars.outputs.DATE }}
+  
+  job_03:
+    needs: job_02
+    runs-on: macos-latest
+    steps:
+      - name: Run tests
+        run: |
+          mkdir -p archive
+          echo "Realizando testes" > archive/testes.txt
+      
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts
+          path: archive
 
-  deploy:
-    needs: set-vars
-    uses: ./.github/workflows/deploy.yml
-    with:
-      APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
-      AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
-      DATE: ${{ needs.set-vars.outputs.DATE }}
-      ORG_NAME: ${{ needs.set-vars.outputs.ORG_NAME }}
+  job_04:
+    needs: job_03
+    runs-on: macos-latest
+    steps:
+      - name: Downloads Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: artifacts
+        
+      - name: Test downloaded artifacts
+        run: |
+          pwd
+          echo "----------------------------------------------"
+          ls -lha
+          echo "----------------------------------------------"
+          ls -R
+          echo "--------------------- FINISH -------------------------"
+
+  # call-prerequisites:
+  #   needs: set-vars
+  #   uses: ./.github/workflows/prerequisites.yml
+  #   with:
+  #     APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
+  #     AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
+  #     DATE: ${{ needs.set-vars.outputs.DATE }}
+
+  # deploy:
+  #   needs: set-vars
+  #   uses: ./.github/workflows/deploy.yml
+  #   with:
+  #     APP_NAME: ${{ needs.set-vars.outputs.APP_NAME }}
+  #     AUTOR: ${{ needs.set-vars.outputs.AUTOR }}
+  #     DATE: ${{ needs.set-vars.outputs.DATE }}
+  #     ORG_NAME: ${{ needs.set-vars.outputs.ORG_NAME }}
 
   # secondary:
   #   runs-on: macos-latest
