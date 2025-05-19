@@ -31,10 +31,17 @@ jobs:
     
     - name: DISPLAY VARS 1 SAME JOB YAML
       run: |
+
+        echo "------------- c/ env.VARS ----------------"
         echo "APP_NAME=${{ env.APP_NAME }}"
         echo "AUTOR=${{ env.AUTOR }}"
         echo "DATE=${{ env.DATE }}"
         echo "ORG_NAME=${{ env.ORG_NAME }}"
+
+        export $("ORG_NAME=${{ env.ORG_NAME }}")
+
+        echo "-------------------- output export -----------------------------"
+        echo "$ORG_NAME"
 
     - name: set variables
       id: set-variables
@@ -44,11 +51,8 @@ jobs:
         echo "DATE=${{ env.DATE }}" >> "$GITHUB_OUTPUT"
         echo "ORG_NAME=${{ env.ORG_NAME }}" >> "$GITHUB_OUTPUT"
 
-        export $(echo "ORG_NAME=${{ env.ORG_NAME }}")
 
-        echo "-------------------- output export -----------------------------"
-        echo "$ORG_NAME"
-        
+
     #     # echo ${{ env.APP_NAME }}
     #     # echo ${{ env.AUTOR }}
     #     # echo ${{ env.DATE }}
