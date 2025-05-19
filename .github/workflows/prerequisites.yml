@@ -24,7 +24,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Show Variables with inputs
+      - name: DISPLAY VARS
         run: |
 
           echo "----------------------------------------------"

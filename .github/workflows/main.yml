@@ -14,140 +14,116 @@ on:
 
   
 jobs:
-  set-vars:
-    runs-on: macos-latest
+  # set-vars:
+  #   runs-on: macos-latest
 
-    outputs:
-      APP_NAME: ${{ steps.set-variables.outputs.APP_NAME }}
-      AUTOR: ${{ steps.set-variables.outputs.AUTOR }}
-      DATE: ${{ steps.set-variables.outputs.DATE }}
-      ORG_NAME: ${{ steps.set-variables.outputs.ORG_NAME }}
+  #   outputs:
+  #     APP_NAME: ${{ steps.set-variables.outputs.APP_NAME }}
+  #     AUTOR: ${{ steps.set-variables.outputs.AUTOR }}
+  #     DATE: ${{ steps.set-variables.outputs.DATE }}
+  #     ORG_NAME: ${{ steps.set-variables.outputs.ORG_NAME }}
     #   ORG_NAME: ${{ steps.set-variables.outputs.ORG_NAME }}
     #   PROJECT_NAME: ${{ steps.set-variables.outputs.PROJECT_NAME }}
 
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+    # steps:
+    # - name: Checkout Code
+    #   uses: actions/checkout@v4
     
-    - name: DISPLAY VARS 1 SAME JOB YAML
-      run: |
-
-        echo "------------- c/ env.VARS ----------------"
-        echo "APP_NAME=${{ env.APP_NAME }}"
-        echo "AUTOR=${{ env.AUTOR }}"
-        echo "DATE=${{ env.DATE }}"
-        echo "ORG_NAME=${{ env.ORG_NAME }}"
-
-        export ORG_NAME="${{ env.ORG_NAME }}"
-
-        echo "-------------------- output export -----------------------------"
-        echo "$ORG_NAME"
-
-    - name: set variables
-      id: set-variables
-      run: |
-        echo "APP_NAME=${{ env.APP_NAME }}" >> "$GITHUB_OUTPUT"
-        echo "AUTOR=${{ env.AUTOR }}" >> "$GITHUB_OUTPUT"
-        echo "DATE=${{ env.DATE }}" >> "$GITHUB_OUTPUT"
-        echo "ORG_NAME=${{ env.ORG_NAME }}" >> "$GITHUB_OUTPUT"
-
-
-
-    #     # echo ${{ env.APP_NAME }}
-    #     # echo ${{ env.AUTOR }}
-    #     # echo ${{ env.DATE }}
-
-    #     echo "REPOSITORY > $GITHUB_REPOSITORY"
-    #     echo "ORG_NAME=$(echo $GITHUB_REPOSITORY | cut -f1 -d"/")" >> $GITHUB_OUTPUT
-    #     echo "PROJECT_NAME=$(echo $GITHUB_REPOSITORY | cut -f2 -d"/")" >> $GITHUB_OUTPUT
-    #     echo "----------------- output ---------------------"
-    #     echo "ORG_NAME: $ORG_NAME"
-    #     echo "PROJECT_NAME: $PROJECT_NAME"
-    #     echo "Start by: $GITHUB_ACTOR"
-      
-    # - name: Load YAML Variables
-    #   uses: doughepi/yaml-env-action@v1.0.0
-    #   with:
-    #     files: ./env1.yml
-
-    # - name: Output YAML Variables
-    #   id: xpto
+    # - name: DISPLAY VARS 1 SAME JOB YAML
     #   run: |
-    #     echo "PROJECT_ID: ${{ env.PROJECT_ID }}"
-    #     echo "AMBIENT: ${{ env.AMBIENT }}"
-    #     echo "LOCAL: ${{ env.LOCAL }}"
-    #     echo "ORG: ${{ env.ORG }}"
 
-  job_02:
-    needs: set-vars
-    runs-on: macos-latest
-    steps:
-      - name: DISPLAY VARS JOB 2
-        run: |
-          echo "----------------------------------------------"
-          echo "1.-----> ${{ env.APP_NAME }}"
-          echo "2.-----> ${{ vars.APP_NAME }}"
-          echo "3.-----> $ORG_NAME"
-          echo "----------------------------------------------"
+    #     echo "------------- c/ env.VARS ----------------"
+    #     echo "APP_NAME=${{ env.APP_NAME }}"
+    #     echo "AUTOR=${{ env.AUTOR }}"
+    #     echo "DATE=${{ env.DATE }}"
+    #     echo "ORG_NAME=${{ env.ORG_NAME }}"
+
+    #     export ORG_NAME="${{ env.ORG_NAME }}"
+
+    #     echo "-------------------- output export -----------------------------"
+    #     echo "$ORG_NAME"
+
+    # - name: set variables
+    #   id: set-variables
+    #   run: |
+    #     echo "APP_NAME=${{ env.APP_NAME }}" >> "$GITHUB_OUTPUT"
+    #     echo "AUTOR=${{ env.AUTOR }}" >> "$GITHUB_OUTPUT"
+    #     echo "DATE=${{ env.DATE }}" >> "$GITHUB_OUTPUT"
+    #     echo "ORG_NAME=${{ env.ORG_NAME }}" >> "$GITHUB_OUTPUT"
+
+
+
+
+  # job_02:
+  #   needs: set-vars
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: DISPLAY VARS JOB 2
+  #       run: |
+  #         echo "----------------------------------------------"
+  #         echo "1.-----> ${{ env.APP_NAME }}"
+  #         echo "2.-----> ${{ vars.APP_NAME }}"
+  #         echo "3.-----> $ORG_NAME"
+  #         echo "----------------------------------------------"
   
-  job_03:
-    needs: job_02
-    runs-on: macos-latest
-    steps:
-      - name: DISPLAY VARS
-        run: |
-          echo "1.-----> ${{ env.APP_NAME }}"
-          echo "2.-----> ${{ vars.APP_NAME }}"
-          echo "3.-----> $ORG_NAME"
+  # job_03:
+  #   needs: job_02
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: DISPLAY VARS
+  #       run: |
+  #         echo "1.-----> ${{ env.APP_NAME }}"
+  #         echo "2.-----> ${{ vars.APP_NAME }}"
+  #         echo "3.-----> $ORG_NAME"
 
 
-      - name: Run tests
-        run: |
-          mkdir -p archive
-          echo "Realizando testes \b Data: 19/05/2025" > archive/testes.txt
+  #     - name: Run tests
+  #       run: |
+  #         mkdir -p archive
+  #         echo "Realizando testes \b Data: 19/05/2025" > archive/testes.txt
       
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: artifacts
-          path: ./archive
+  #     - name: Upload Artifacts
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: artifacts
+  #         path: ./archive
 
-      - name: Test pos Uploads
-        run: |
-          ls -R
+  #     - name: Test pos Uploads
+  #       run: |
+  #         ls -R
 
-  job_04:
-    needs: job_03
-    runs-on: macos-latest
-    steps:
-      - name: DISPLAY VARS
-        run: |
-         echo "1.-----> ${{ env.APP_NAME }}"
-         echo "2.-----> ${{ vars.APP_NAME }}"
-         echo "ORG_NAME: ${{ env.ORG_NAME}}"
-         echo "3.-----> $ORG_NAME"
+  # job_04:
+  #   needs: job_03
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: DISPLAY VARS
+  #       run: |
+  #        echo "1.-----> ${{ env.APP_NAME }}"
+  #        echo "2.-----> ${{ vars.APP_NAME }}"
+  #        echo "ORG_NAME: ${{ env.ORG_NAME}}"
+  #        echo "3.-----> $ORG_NAME"
 
-      - name: Downloads Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: artifacts
-          path: ./archive
+  #     - name: Downloads Artifacts
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: artifacts
+  #         path: ./archive
         
-      - name: Test downloaded artifacts
-        run: |
-          pwd
-          echo "----------------------------------------------"
-          ls -lha
-          echo "----------------------------------------------"
-          ls -R
-          echo "--------------------- FINISH -------------------------"
+  #     - name: Test downloaded artifacts
+  #       run: |
+  #         pwd
+  #         echo "----------------------------------------------"
+  #         ls -lha
+  #         echo "----------------------------------------------"
+  #         ls -R
+  #         echo "--------------------- FINISH -------------------------"
  
-      - name: Final test
-        run: |
-          cat ./archive/testes.txt
+  #     - name: Final test
+  #       run: |
+  #         cat ./archive/testes.txt
 
   Job_1000:
-    needs: job_04
+
     uses: ./.github/workflows/prerequisites.yml
     # with:
     #   ORG_NAME: $ORG_NAME
