@@ -59,10 +59,11 @@ jobs:
       ORG_NAME: ${{ steps.pre-deploy.outputs.ORG_NAME }}
 
     steps:
-      - id: pre-deploy
+      - name: pre_deploy
+        id: pre-deploy
         run: |
           echo "ORG_NAME=${{ env.ORG_NAME }}" >> $GITHUB_OUTPUT
-
+          echo "---------------------------------------------------------"
           echo "$REPOSITORY_VAR"
   deploy:
     needs: pre_deploy
