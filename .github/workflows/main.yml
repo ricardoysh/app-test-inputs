@@ -19,11 +19,11 @@ jobs:
     steps:
       - name: SET VARS
         run: |
-          ORG_NAME_X=`${{ env.ORG_NAME }}`
+          
           echo "ORG_NAME =====> ${{ env.ORG_NAME }}"
           echo "ORG_NAME=${{ env.ORG_NAME }}" >> $GITHUB_ENV
           echo "--------------------------------------------------"
-          echo "XXXXX ======> $ORG_NAME_X"
+          
   second:
     needs: init-test
     runs-on: macos-latest
