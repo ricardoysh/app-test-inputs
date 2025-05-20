@@ -49,12 +49,24 @@ jobs:
     with:
       ORG_NAME: ${{ needs.thyrd.outputs.ORG_NAME_2 }}
 
-    
+  #-------------------------
+  # Set outputs deploy
+  #-------------------------
+  pre_deploy:
+    needs: prerequisities
+    runs-on: macos-latest
+    outputs:
+      ORG_NAME: ${{ steps.pre-deploy.outputs.ORG_NAME }}
+
+    steps:
+      - id: pre-deploy
+        run: |
+          echo "ORG_NAME=${{ env.ORG_NAME }}" >> $GITHUB_OUTPUT
   deploy:
-    needs: thyrd
+    needs: pre_deploy
     uses: ./.github/workflows/deploy.yml
     with:
-      ORG_NAME: ${{ needs.thyrd.outputs.ORG_NAME_2 }}
+      ORG_NAME: ${{ needs.pre_deploy.outputs.ORG_NAME }}
 
   # set-vars:
   #   runs-on: macos-latest
