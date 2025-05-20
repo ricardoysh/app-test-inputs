@@ -62,6 +62,8 @@ jobs:
       - id: pre-deploy
         run: |
           echo "ORG_NAME=${{ env.ORG_NAME }}" >> $GITHUB_OUTPUT
+
+          echo "$REPOSITORY_VAR"
   deploy:
     needs: pre_deploy
     uses: ./.github/workflows/deploy.yml
