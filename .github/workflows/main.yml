@@ -29,9 +29,11 @@ jobs:
           echo "--------------------------------------------------------"
           export APP_NAME=$(yq e .app.name pipeline.yaml)
           export VERSION=$(yq e .app.version pipeline.yaml)
-
+          echo "--------------------------------------------------------"
           echo "NOME DA APLICACAO: $APP_NAME"
           echo "VERSAO: $VERSION"
+          
+          echo "O seguinte artefato será publicado ----> REPOSITORY/$APP_NAME:$VERSION"
 
           # # Get info
           # export APP_NAME=$(yq -e app.name pipeline.yaml)
