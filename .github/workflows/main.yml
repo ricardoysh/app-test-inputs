@@ -23,6 +23,7 @@ jobs:
       - name: Get info from project
         run: |
           ls -R
+          pwd
           echo "--------------------------------------------------------"
           # Get info
           export APP_NAME=$(yq e app.name ./.pipeline.yaml)
