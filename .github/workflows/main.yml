@@ -26,8 +26,8 @@ jobs:
           pwd
           echo "--------------------------------------------------------"
           # Get info
-          export APP_NAME=$(yq e app.name ./.pipeline.yaml)
-          export VERSION=$(yq e app.version ./.pipeline.yaml)
+          export APP_NAME=$(yq e app.name pipeline.yaml)
+          export VERSION=$(yq e app.version pipeline.yaml)
           echo "--------------------------------------------------------"
           # Display vars
           echo $APP_NAME
