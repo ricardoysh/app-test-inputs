@@ -25,8 +25,8 @@ jobs:
           ls -R
           echo "--------------------------------------------------------"
           # Get info
-          export APP_NAME=$(yq e app.name .pipeline.yaml)
-          export VERSION=$(yq e app.version .pipeline.yaml)
+          export APP_NAME=$(yq e app.name ./.pipeline.yaml)
+          export VERSION=$(yq e app.version ./.pipeline.yaml)
           echo "--------------------------------------------------------"
           # Display vars
           echo $APP_NAME
@@ -53,18 +53,18 @@ jobs:
         run: |
           echo "ORG_NAME=====> $ORG_NAME"
 
-  thyrd:
-    needs: second
-    runs-on: macos-latest
+  # thyrd:
+  #   needs: second
+  #   runs-on: macos-latest
     
-    outputs:
-      ORG_NAME_2: ${{ steps.set-vars2.outputs.ORG_NAME_2 }}
+  #   outputs:
+  #     ORG_NAME_2: ${{ steps.set-vars2.outputs.ORG_NAME_2 }}
       
-    steps:
-      - name: set-vars2
-        id: set-vars2
-        run: |
-          echo "ORG_NAME_2= ${{ env.ORG_NAME }}" >> $GITHUB_OUTPUT
+  #   steps:
+  #     - name: set-vars2
+  #       id: set-vars2
+  #       run: |
+  #         echo "ORG_NAME_2= ${{ env.ORG_NAME }}" >> $GITHUB_OUTPUT
   
   # prerequisities:
   #   needs: thyrd
