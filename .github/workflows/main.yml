@@ -27,8 +27,8 @@ jobs:
           ls -R
           pwd
           echo "--------------------------------------------------------"
-          export APP_NAME=$(yq e .app.name pipeline.yaml)
-          export VERSION=$(yq e .app.version pipeline.yaml)
+          export APP_NAME=$(yq e .app.name .pipeline.yaml)
+          export VERSION=$(yq e .app.version .pipeline.yaml)
           echo "--------------------------------------------------------"
           echo "NOME DA APLICACAO: $APP_NAME"
           echo "VERSAO: $VERSION"
