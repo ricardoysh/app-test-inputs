@@ -22,9 +22,14 @@ jobs:
 
       - name: Get info from project
         run: |
+          # Intalling yq
+          brew install yq
+
+          # Get info
           export APP_NAME=$(yq e app.name .pipeline.yaml)
           export VERSION=$(yq e app.version .pipeline.yaml)
 
+          # Display vars
           echo $APP_NAME
           echo $VERSION
 
