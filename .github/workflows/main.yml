@@ -28,13 +28,15 @@ jobs:
           ls -R
           pwd
           echo "--------------------------------------------------------"
-          # Get info
-          export APP_NAME=$(yq e app.name pipeline.yaml)
-          export VERSION=$(yq e app.version pipeline.yaml)
-          echo "--------------------------------------------------------"
-          # Display vars
-          echo $APP_NAME
-          echo $VERSION
+          yq e app.name pipeline.yaml
+          yq e app.version pipeline.yaml
+          # # Get info
+          # export APP_NAME=$(yq e app.name pipeline.yaml)
+          # export VERSION=$(yq e app.version pipeline.yaml)
+          # echo "--------------------------------------------------------"
+          # # Display vars
+          # echo $APP_NAME
+          # echo $VERSION
 
 
 
