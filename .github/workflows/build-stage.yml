@@ -43,6 +43,7 @@ jobs:
           echo "---------------------------"
           ls -lha
           echo "---------------------------"
+          yq -h
           yq e .SCHEME ./variables.yml
           yq e .CONFIGURATION ./variables.yml
           yq e .DESTINATION ./variables.yml
