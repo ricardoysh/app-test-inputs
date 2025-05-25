@@ -16,7 +16,7 @@ jobs:
         run: |
           yq e .SCHEME variables.yaml
           yq e .CONFIGURATION variables.yaml
-          yq e .DESTINATION variables.yml
+          yq e .DESTINATION variables.yaml
 
       - name: Run Unit Tests
         run: |

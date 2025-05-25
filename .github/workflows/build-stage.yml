@@ -48,9 +48,9 @@ jobs:
           export CONFIGURATION=$(yq e .CONFIGURATION ./variables.yaml)
           export DESTINATION=$(yq e .DESTINATION ./variables.yaml)
 
-          echo "$SCHEME"
-          echo "$CONFIGURATION"
-          echo "${DESTINATION}"
+          echo "1. $SCHEME"
+          echo "2. $CONFIGURATION"
+          echo "3. ${DESTINATION}"
 
 
       # - name: SHOW ENVIROMENTS VAIRABLES
