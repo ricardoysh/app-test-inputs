@@ -36,6 +36,7 @@ jobs:
 
       - name: Ler variável
         run: |
+          yq
           yq e .SCHEME variables.yml
           yq e .CONFIGURATION variables.yml
           yq e .DESTINATION variables.yml
