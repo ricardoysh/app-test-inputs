@@ -2,19 +2,19 @@ name: Build App iOS
 
 on:
   workflow_call:
-    inputs:
-      SCHEME:
-        required: true
-        type: string
-      CONFIGURATION:
-        required: true
-        type: string
-      DESTINATION:
-        required: true
-        type: string
-      ORG_NAME:
-        required: true
-        type: string
+    # inputs:
+    #   SCHEME:
+    #     required: true
+    #     type: string
+    #   CONFIGURATION:
+    #     required: true
+    #     type: string
+    #   DESTINATION:
+    #     required: true
+    #     type: string
+    #   ORG_NAME:
+    #     required: true
+    #     type: string
       # PROJECT_NAME:
       #   required: true
       #   type: string
@@ -23,17 +23,28 @@ jobs:
   build:
     runs-on: macos-latest
 
-    env:
-      ORG_NAME: ${{ env.ORG_NAME || "valor_padrao"}}
 
     steps:
-      - name: SHOW ENVIROMENTS VAIRABLES
+      - uses: actions/download-artifact@v3
+        with:
+          name: shared-variables
+
+      - name: Ler variável
         run: |
-          # -------> Show Variables:
-          echo "${{ inputs.SCHEME }}"
-          echo "${{ inputs.CONFIGURATION }}"
-          echo "${{ inputs.DESTINATION }}"
-          echo "${{ env.ORG_NAME }}"
+          yq e .SCHEME variables.yml
+          yq e .CONFIGURATION variables.yml
+          yq e .DESTINATION variables.yml
+
+          # MY_VARIABLE=$(cat variable.txt)
+          # echo "Variável compartilhada: $MY_VARIABLE"
+
+      # - name: SHOW ENVIROMENTS VAIRABLES
+      #   run: |
+      #     # -------> Show Variables:
+      #     echo "${{ inputs.SCHEME }}"
+      #     echo "${{ inputs.CONFIGURATION }}"
+      #     echo "${{ inputs.DESTINATION }}"
+      #     echo "${{ env.ORG_NAME }}"
       
       - name: Checkkout Code
         uses: actions/checkout@v4
@@ -42,7 +53,7 @@ jobs:
         run: |
           # ------------> Buildando aplicação ...
           echo "xcodebuld --scheme $SCHEME --configuration $CONFIGURATION --destination $DESTINATION"
-        env:
-          SCHEME: ${{ inputs.SCHEME }}
-          CONFIGURATION: ${{ inputs.CONFIGURATION }}
-          DESTINATION: ${{ inputs.DESTINATION }}
+        # env:
+        #   SCHEME: ${{ inputs.SCHEME }}
+        #   CONFIGURATION: ${{ inputs.CONFIGURATION }}
+        #   DESTINATION: ${{ inputs.DESTINATION }}

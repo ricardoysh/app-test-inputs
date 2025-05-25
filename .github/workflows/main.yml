@@ -17,35 +17,44 @@ jobs:
   set-variables:
     runs-on: macos-latest
    
-    outputs:
-        SCHEME: ${{ steps.export.outputs.SCHEME }}
-        CONFIGURATION: ${{ steps.export.outputs.CONFIGURATION }}
-        DESTINATION: ${{ steps.export.outputs.DESTINATION }}
+    # outputs:
+    #     SCHEME: ${{ steps.export.outputs.SCHEME }}
+    #     CONFIGURATION: ${{ steps.export.outputs.CONFIGURATION }}
+    #     DESTINATION: ${{ steps.export.outputs.DESTINATION }}
 
     steps:
 
       - name: Setup Variables
         id: export
         run: |
-          echo "SCHEME=${{ env.SCHEME }}" >> $GITHUB_OUTPUT
-          echo "CONFIGURATION=${{ env.CONFIGURATION }}" >> $GITHUB_OUTPUT
-          echo "DESTINATION=${{ env.DESTINATION }}" >> $GITHUB_OUTPUT
+          echo "${{ env.SCHEME }}" >> variables.yml
+          echo "${{ env.CONFIGURATION }}" >> variables.yml
+          echo "${{ env.DESTINATION }}" >> variables.yml
+
+          # echo "SCHEME=${{ env.SCHEME }}" >> $GITHUB_OUTPUT
+          # echo "CONFIGURATION=${{ env.CONFIGURATION }}" >> $GITHUB_OUTPUT
+          # echo "DESTINATION=${{ env.DESTINATION }}" >> $GITHUB_OUTPUT
+      
+      - uses: actions/upload-artifact@v3
+        with:
+          name: shared-variables
+          path: variables.txt
 
   build-ios:
     needs: set-variables
     uses: ./.github/workflows/build-stage.yml
-    with:
-      SCHEME: ${{ needs.set-variables.outputs.SCHEME }}
-      CONFIGURATION: ${{ needs.set-variables.outputs.CONFIGURATION }}
-      DESTINATION: ${{ needs.set-variables.outputs.DESTINATION }}
-      ORG_NAME: ${{ vars.ORG_NAME }}
+    # with:
+    #   SCHEME: ${{ needs.set-variables.outputs.SCHEME }}
+    #   CONFIGURATION: ${{ needs.set-variables.outputs.CONFIGURATION }}
+    #   DESTINATION: ${{ needs.set-variables.outputs.DESTINATION }}
+
     secrets: inherit
 
   unit-tests:
     needs: build-ios
     uses: ./.github/workflows/unit-tests.yml
-    with:
-      SCHEME: ${{ needs.set-variables.outputs.SCHEME }}
+    # with:
+    #   SCHEME: ${{ needs.set-variables.outputs.SCHEME }}
   # deploy-ios:
   #   uses: ./.github/workflows/deploy-ios.yml
 

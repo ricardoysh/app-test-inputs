@@ -8,6 +8,16 @@ jobs:
     unit-test:
       runs-on: macos-latest
       steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: shared-variables
+
+      - name: Ler variável
+        run: |
+          yq e .SCHEME variables.yml
+          yq e .CONFIGURATION variables.yml
+          yq e .DESTINATION variables.yml
+
       - name: Run Unit Tests
         run: |
           echo "xcodebuild test \
@@ -15,4 +25,3 @@ jobs:
             -scheme "${{ vars.SCHEME || env.SCHEME }}" \
             -destination "${{ vars.DESTINATION || env.DESTINATION }}" \
             -enableCodeCoverage YES "
-            
