@@ -1,9 +1,9 @@
 name: 'App Test With Inputs'
 
 env:
-  APP_NAME: 'MY APP TEST IOS'
-  AUTOR: 'STEVE JOBS'
-  DATE: '22/04/2025'
+  SCHEME: 'MySCHEME'
+  CONFIGURATION: 'Release'
+  DESTINATION: '"platform=iOS Simulator,name=iPhone 15"'
   ORG_NAME: 'RICO CORPORATION'
 
 on:
@@ -14,26 +14,58 @@ on:
 
   
 jobs:
-  check-info:
+  set-variables:
     runs-on: macos-latest
+   
+    outputs:
+        SCHEME: ${{ steps.export.outputs.SCHEME }}
+        CONFIGURATION: ${{ steps.export.outputs.CONFIGURATION }}
+        DESTINATION: ${{ steps.export.outputs.DESTINATION }}
+
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
 
-      - name: Get info from project
+      - name: Setup Variables
+        id: export
         run: |
+          echo "SCHEME=${{ env.SCHEME }}" >> $GITHUB_OUTPUT
+          echo "CONFIGURATION=${{ env.CONFIGURATION }} >> $GITHUB_OUTPUT
+          echo "DESTINATION=${{ env.DESTINATION }} >> $GITHUB_OUTPUT
 
-          echo "--------------------------------------------------------"
-          ls -R
-          pwd
-          echo "--------------------------------------------------------"
-          export APP_NAME=$(yq e .app.name .pipeline.yaml)
-          export VERSION=$(yq e .app.version .pipeline.yaml)
-          echo "--------------------------------------------------------"
-          echo "NOME DA APLICACAO: $APP_NAME"
-          echo "VERSAO: $VERSION"
+  build-ios:
+    needs: set-variables
+    uses: ./.github/workflows/build-stage.yml
+    with:
+      SCHEME: ${{ needs.set-variables.outputs.SCHEME }}
+      CONFIGURATION: ${{ needs.set-variables.outputs.CONFIGURATION }}
+      DESTINATION: ${{ needs.set-variables.outputs.DESTINATION }}
+
+  # unit-tests:
+  #   uses: ./.github/workflows/unit-tests.yml
+  
+  # deploy-ios:
+  #   uses: ./.github/workflows/deploy-ios.yml
+
+
+  # check-info:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Checkout Code
+  #       uses: actions/checkout@v4
+
+  #     - name: Get info from project
+  #       run: |
+
+  #         echo "--------------------------------------------------------"
+  #         ls -R
+  #         pwd
+  #         echo "--------------------------------------------------------"
+  #         export APP_NAME=$(yq e .app.name .pipeline.yaml)
+  #         export VERSION=$(yq e .app.version .pipeline.yaml)
+  #         echo "--------------------------------------------------------"
+  #         echo "NOME DA APLICACAO: $APP_NAME"
+  #         echo "VERSAO: $VERSION"
           
-          echo "O seguinte artefato será publicado ----> REPOSITORY/$APP_NAME:$VERSION"
+  #         echo "O seguinte artefato será publicado ----> REPOSITORY/$APP_NAME:$VERSION"
 
           # # Get info
           # export APP_NAME=$(yq -e app.name pipeline.yaml)
@@ -45,24 +77,24 @@ jobs:
 
 
 
-  init-test:
-    needs: check-info
-    runs-on: macos-latest
-    steps:
-      - name: SET VARS
-        run: |
+  # init-test:
+  #   needs: check-info
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: SET VARS
+  #       run: |
           
-          echo "ORG_NAME =====> ${{ env.ORG_NAME }}"
-          echo "ORG_NAME=${{ env.ORG_NAME }}" >> $GITHUB_ENV
-          echo "--------------------------------------------------"
+  #         echo "ORG_NAME =====> ${{ env.ORG_NAME }}"
+  #         echo "ORG_NAME=${{ env.ORG_NAME }}" >> $GITHUB_ENV
+  #         echo "--------------------------------------------------"
           
-  second:
-    needs: init-test
-    runs-on: macos-latest
-    steps:
-      - name: DISPLAY VARS
-        run: |
-          echo "ORG_NAME=====> $ORG_NAME"
+  # second:
+  #   needs: init-test
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: DISPLAY VARS
+  #       run: |
+  #         echo "ORG_NAME=====> $ORG_NAME"
 
   # thyrd:
   #   needs: second
