@@ -14,8 +14,8 @@ jobs:
 
       - name: Ler variável
         run: |
-          yq e .SCHEME variables.yml
-          yq e .CONFIGURATION variables.yml
+          yq e .SCHEME variables.yaml
+          yq e .CONFIGURATION variables.yaml
           yq e .DESTINATION variables.yml
 
       - name: Run Unit Tests
