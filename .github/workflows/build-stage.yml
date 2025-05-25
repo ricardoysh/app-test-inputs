@@ -33,7 +33,7 @@ jobs:
       - name: Test Downloded Artifacts
         run: |
           ls -R
-          cat variables.yml
+          cat variables.yaml
       # - name: install yq
       #   run: brew install yq
 
@@ -44,8 +44,8 @@ jobs:
           ls -lha
           echo "---------------------------"
           yq -h
-          yq e .SCHEME ./variables.yml
-          yq e .CONFIGURATION ./variables.yml
+          yq e .SCHEME ./variables.yaml
+          yq e .CONFIGURATION ./variables.yaml
           yq e .DESTINATION ./variables.yml
 
           # MY_VARIABLE=$(cat variable.txt)

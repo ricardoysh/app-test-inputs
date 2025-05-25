@@ -29,7 +29,7 @@ jobs:
         run: |
           echo "${{ env.SCHEME }}" >> variables.yml
           echo "${{ env.CONFIGURATION }}" >> variables.yml
-          echo "${{ env.DESTINATION }}" >> variables.yml
+          echo "${{ env.DESTINATION }}" >> variables.yaml
           cat variables.yml
 
           # echo "SCHEME=${{ env.SCHEME }}" >> $GITHUB_OUTPUT
@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: shared-variables
-          path: variables.yml
+          path: variables.yaml
 
   build-ios:
     needs: set-variables
