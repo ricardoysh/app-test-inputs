@@ -35,3 +35,8 @@ jobs:
         run: |
           # ------------> Buildando aplicação ...
           echo "xcodebuld --scheme $SCHEME --configuration $CONFIGURATION --destination $DESTINATION"
+        env:
+          SCHEME: ${{ inputs.SCHEME }}
+          CONFIGURATION: ${{ inputs.CONFIGURATION }}
+          DESTINATION: ${{ inputs.DESTINATION }}
+          

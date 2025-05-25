@@ -28,8 +28,8 @@ jobs:
         id: export
         run: |
           echo "SCHEME=${{ env.SCHEME }}" >> $GITHUB_OUTPUT
-          echo "CONFIGURATION=${{ env.CONFIGURATION }} >> $GITHUB_OUTPUT
-          echo "DESTINATION=${{ env.DESTINATION }} >> $GITHUB_OUTPUT
+          echo "CONFIGURATION=${{ env.CONFIGURATION }}" >> $GITHUB_OUTPUT
+          echo "DESTINATION=${{ env.DESTINATION }}" >> $GITHUB_OUTPUT
 
   build-ios:
     needs: set-variables
