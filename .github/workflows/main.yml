@@ -39,8 +39,8 @@ jobs:
       CONFIGURATION: ${{ needs.set-variables.outputs.CONFIGURATION }}
       DESTINATION: ${{ needs.set-variables.outputs.DESTINATION }}
 
-  # unit-tests:
-  #   uses: ./.github/workflows/unit-tests.yml
+  unit-tests:
+    uses: ./.github/workflows/unit-tests.yml
   
   # deploy-ios:
   #   uses: ./.github/workflows/deploy-ios.yml

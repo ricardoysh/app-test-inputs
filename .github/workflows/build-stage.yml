@@ -30,7 +30,10 @@ jobs:
           echo "${{ inputs.SCHEME }}"
           echo "${{ inputs.CONFIGURATION }}"
           echo "${{ inputs.DESTINATION }}"
-
+      
+      - name: Checkkout Code
+        uses: actions/checkout@v4
+  
       - name: Build App with Xcode
         run: |
           # ------------> Buildando aplicação ...
@@ -39,4 +42,3 @@ jobs:
           SCHEME: ${{ inputs.SCHEME }}
           CONFIGURATION: ${{ inputs.CONFIGURATION }}
           DESTINATION: ${{ inputs.DESTINATION }}
-          
