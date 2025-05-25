@@ -70,7 +70,8 @@ jobs:
           echo "xcodebuld \ 
             --scheme $SCHEME \ 
             --configuration $CONFIGURATION \
-            --destination $DESTINATION"
+            --destination $DESTINATION \
+            clean"
 
 
         # env:
