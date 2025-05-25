@@ -8,20 +8,24 @@ jobs:
     unit-test:
       runs-on: macos-latest
       steps:
+      - name: Checkout Code
+        run: action/checkout@v4
+
       - uses: actions/download-artifact@v4
         with:
           name: shared-variables
 
       - name: Ler variável
         run: |
-          export SCHEME=$(yq e .SCHEME variables.yaml)''
-          export CONFIGURATION=$(yq e .CONFIGURATION variables.yaml)''
-          export DESTINATION=$(yq e .DESTINATION variables.yaml)''
+          echo "SCHEME=$(yq e .SCHEME variables.yaml)" >> $GITHUB_ENV
+          echo "CONFIGURATION=$(yq e .CONFIGURATION variables.yaml)" >> $GITHUB_ENV
+          echo "DESTINATION=$(yq e .DESTINATION variables.yaml)" >> $GITHUB_ENV
+          echo "APP_NAME=$(yq e .app.name .pipeline.yaml)" >> $GITHUB_ENV
 
       - name: Run Unit Tests
         run: |
-          echo "xcodebuild test \
-            -workspace "${{ vars.APP_NAME || env.APP_NAME }}.xcworkspace" \
-            -scheme "${{ vars.SCHEME || env.SCHEME }}" \
-            -destination "${{ vars.DESTINATION || env.DESTINATION }}" \
-            -enableCodeCoverage YES "
+          echo -e xcodebuild test \\n\
+            -workspace "$APP_NAME.xcworkspace" \\n\
+            -scheme "$SCHEME" \\n\
+            -destination "$DESTINATION" \\n\
+            -enableCodeCoverage YES
