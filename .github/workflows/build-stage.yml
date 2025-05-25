@@ -50,7 +50,7 @@ jobs:
 
           echo "$SCHEME"
           echo "$CONFIGURATION"
-          echo "$(DESTINATION)"
+          echo "${DESTINATION}"
 
 
       # - name: SHOW ENVIROMENTS VAIRABLES
