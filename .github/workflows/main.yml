@@ -38,10 +38,14 @@ jobs:
       SCHEME: ${{ needs.set-variables.outputs.SCHEME }}
       CONFIGURATION: ${{ needs.set-variables.outputs.CONFIGURATION }}
       DESTINATION: ${{ needs.set-variables.outputs.DESTINATION }}
+      ORG_NAME: ${{ vars.ORG_NAME }}
+    secrets: inherit
 
   unit-tests:
+    needs: build-ios
     uses: ./.github/workflows/unit-tests.yml
-  
+    with:
+      SCHEME: ${{ needs.set-variables.outputs.SCHEME }}
   # deploy-ios:
   #   uses: ./.github/workflows/deploy-ios.yml
 

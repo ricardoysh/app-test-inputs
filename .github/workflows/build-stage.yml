@@ -12,9 +12,9 @@ on:
       DESTINATION:
         required: true
         type: string
-      # ORG_NAME:
-      #   required: true
-      #   type: string
+      ORG_NAME:
+        required: true
+        type: string
       # PROJECT_NAME:
       #   required: true
       #   type: string
@@ -23,6 +23,9 @@ jobs:
   build:
     runs-on: macos-latest
 
+    env:
+      ORG_NAME: ${{ env.ORG_NAME || "valor_padrao"}}
+
     steps:
       - name: SHOW ENVIROMENTS VAIRABLES
         run: |
@@ -30,6 +33,7 @@ jobs:
           echo "${{ inputs.SCHEME }}"
           echo "${{ inputs.CONFIGURATION }}"
           echo "${{ inputs.DESTINATION }}"
+          echo "${{ env.ORG_NAME }}"
       
       - name: Checkkout Code
         uses: actions/checkout@v4
