@@ -43,6 +43,7 @@ jobs:
           echo "---------------------------"
           ls -lha
           echo "---------------------------"
+          cat variables.yaml
           
           export SCHEME=$(yq e .SCHEME ./variables.yaml)
           export CONFIGURATION=$(yq e .CONFIGURATION ./variables.yaml)
