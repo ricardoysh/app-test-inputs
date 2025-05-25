@@ -39,24 +39,19 @@ jobs:
 
       - name: Ler variável
         run: |
-          pwd
-          echo "---------------------------"
-          ls -lha
-          echo "---------------------------"
-          cat variables.yaml
-          echo "###########################"
-
-          yq e '.SCHEME' variables.yaml
-          echo "###########################"
 
           export SCHEME=$(yq -r .SCHEME variables.yaml)
           export CONFIGURATION=$(yq -r .CONFIGURATION variables.yaml)
           export DESTINATION=$(yq -r .DESTINATION variables.yaml)
           echo "---------------------------"
+          echo "#------- GET VALUES FROM YAML --------"
           echo "1. $SCHEME"
           echo "2. $CONFIGURATION"
           echo "3. ${DESTINATION}"
-
+          
+          echo "SCHEME=$SCHEME" >> $GITHUB_ENV
+          echo "SCONFIGURATION=$CONFIGURATION"  >> $GITHUB_ENV
+          echo "DESTINATION=${DESTINATION}"  >> $GITHUB_ENV
 
       # - name: SHOW ENVIROMENTS VAIRABLES
       #   run: |
@@ -73,6 +68,8 @@ jobs:
         run: |
           # ------------> Buildando aplicação ...
           echo "xcodebuld --scheme $SCHEME --configuration $CONFIGURATION --destination $DESTINATION"
+
+
         # env:
         #   SCHEME: ${{ inputs.SCHEME }}
         #   CONFIGURATION: ${{ inputs.CONFIGURATION }}
