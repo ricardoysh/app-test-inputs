@@ -33,6 +33,8 @@ jobs:
         run: |
           ls -R
           cat variables.yml
+      - name: install yq
+        run: brew install yq
 
       - name: Ler variável
         run: |
