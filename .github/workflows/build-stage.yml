@@ -40,9 +40,9 @@ jobs:
       - name: Ler variável
         run: |
           yq
-          yq e .SCHEME variables.yml
-          yq e .CONFIGURATION variables.yml
-          yq e .DESTINATION variables.yml
+          yq e .SCHEME ./variables.yml
+          yq e .CONFIGURATION ./variables.yml
+          yq e .DESTINATION ./variables.yml
 
           # MY_VARIABLE=$(cat variable.txt)
           # echo "Variável compartilhada: $MY_VARIABLE"
