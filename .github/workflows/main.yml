@@ -27,8 +27,8 @@ jobs:
       - name: Setup Variables
         id: export
         run: |
-          echo "${{ env.SCHEME }}" >> variables.yml
-          echo "${{ env.CONFIGURATION }}" >> variables.yml
+          echo "${{ env.SCHEME }}" >> variables.yaml
+          echo "${{ env.CONFIGURATION }}" >> variables.yaml
           echo "${{ env.DESTINATION }}" >> variables.yaml
           cat variables.yml
 
