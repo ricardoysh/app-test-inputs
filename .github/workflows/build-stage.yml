@@ -67,10 +67,10 @@ jobs:
       - name: Build App with Xcode
         run: |
           # ------------> Buildando aplicação ...
-          echo xcodebuld \\n
-            --scheme "$SCHEME" \\n
-            --configuration "$CONFIGURATION" \\n
-            --destination "$DESTINATION" \\n
+          echo -e xcodebuld \\n\
+            --scheme "$SCHEME" \\n\
+            --configuration "$CONFIGURATION" \\n\
+            --destination "$DESTINATION" \\n\
             clean
 
 
