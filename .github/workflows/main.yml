@@ -30,7 +30,7 @@ jobs:
           echo "${{ env.SCHEME }}" >> variables.yaml
           echo "${{ env.CONFIGURATION }}" >> variables.yaml
           echo "${{ env.DESTINATION }}" >> variables.yaml
-          cat variables.yml
+          cat variables.yaml
 
           # echo "SCHEME=${{ env.SCHEME }}" >> $GITHUB_OUTPUT
           # echo "CONFIGURATION=${{ env.CONFIGURATION }}" >> $GITHUB_OUTPUT
