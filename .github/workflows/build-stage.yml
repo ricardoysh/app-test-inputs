@@ -50,7 +50,7 @@ jobs:
           echo "3. ${DESTINATION}"
           
           echo "SCHEME=$SCHEME" >> $GITHUB_ENV
-          echo "SCONFIGURATION=$CONFIGURATION"  >> $GITHUB_ENV
+          echo "CONFIGURATION=$CONFIGURATION"  >> $GITHUB_ENV
           echo "DESTINATION=${DESTINATION}"  >> $GITHUB_ENV
 
       # - name: SHOW ENVIROMENTS VAIRABLES
