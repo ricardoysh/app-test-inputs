@@ -46,7 +46,7 @@ jobs:
           cat variables.yaml
           echo "###########################"
 
-          yq '-r .SCHEME' variables.yaml
+          yq -r '.SCHEME' variables.yaml
           echo "###########################"
 
           export SCHEME=$(yq -r .SCHEME variables.yaml)
