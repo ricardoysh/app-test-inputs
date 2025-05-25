@@ -27,9 +27,9 @@ jobs:
       - name: Setup Variables
         id: export
         run: |
-          echo "${{ env.SCHEME }}" >> variables.yaml
-          echo "${{ env.CONFIGURATION }}" >> variables.yaml
-          echo "${{ env.DESTINATION }}" >> variables.yaml
+          echo "SCHEME:${{ env.SCHEME }}" >> variables.yaml
+          echo "CONFIGURATION:${{ env.CONFIGURATION }}" >> variables.yaml
+          echo "DESTINATION:${{ env.DESTINATION }}" >> variables.yaml
           cat variables.yaml
 
           # echo "SCHEME=${{ env.SCHEME }}" >> $GITHUB_OUTPUT
