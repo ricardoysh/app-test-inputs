@@ -23,38 +23,46 @@ jobs:
     #     DESTINATION: ${{ steps.export.outputs.DESTINATION }}
 
     steps:
-
-      - name: Setup Variables
-        id: export
+      - name: test
         run: |
-          echo "SCHEME: ${{ env.SCHEME }}" >> variables.yaml
-          echo "CONFIGURATION: ${{ env.CONFIGURATION }}" >> variables.yaml
-          echo "DESTINATION: ${{ env.DESTINATION }}" >> variables.yaml
-          cat variables.yaml
+          echo "--------------------------------------------------------"
+          export APP_NAME=$(yq e .app.name .pipeline.yaml)
+          export VERSION=$(yq e .app.version .pipeline.yaml)
+          echo "--------------------------------------------------------"
+          echo "NOME DA APLICACAO: $APP_NAME"
+          echo "VERSAO: $VERSION"
 
-          # echo "SCHEME=${{ env.SCHEME }}" >> $GITHUB_OUTPUT
-          # echo "CONFIGURATION=${{ env.CONFIGURATION }}" >> $GITHUB_OUTPUT
-          # echo "DESTINATION=${{ env.DESTINATION }}" >> $GITHUB_OUTPUT
+      # - name: Setup Variables
+      #   id: export
+      #   run: |
+      #     echo "SCHEME: ${{ env.SCHEME }}" >> variables.yaml
+      #     echo "CONFIGURATION: ${{ env.CONFIGURATION }}" >> variables.yaml
+      #     echo "DESTINATION: ${{ env.DESTINATION }}" >> variables.yaml
+      #     cat variables.yaml
+
+      #     # echo "SCHEME=${{ env.SCHEME }}" >> $GITHUB_OUTPUT
+      #     # echo "CONFIGURATION=${{ env.CONFIGURATION }}" >> $GITHUB_OUTPUT
+      #     # echo "DESTINATION=${{ env.DESTINATION }}" >> $GITHUB_OUTPUT
       
-      - name: Upload Variables
-        uses: actions/upload-artifact@v4
-        with:
-          name: shared-variables
-          path: variables.yaml
+      # - name: Upload Variables
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: shared-variables
+      #     path: variables.yaml
 
-  build-ios:
-    needs: set-variables
-    uses: ./.github/workflows/build-stage.yml
-    # with:
-    #   SCHEME: ${{ needs.set-variables.outputs.SCHEME }}
-    #   CONFIGURATION: ${{ needs.set-variables.outputs.CONFIGURATION }}
-    #   DESTINATION: ${{ needs.set-variables.outputs.DESTINATION }}
+  # build-ios:
+  #   needs: set-variables
+  #   uses: ./.github/workflows/build-stage.yml
+  #   # with:
+  #   #   SCHEME: ${{ needs.set-variables.outputs.SCHEME }}
+  #   #   CONFIGURATION: ${{ needs.set-variables.outputs.CONFIGURATION }}
+  #   #   DESTINATION: ${{ needs.set-variables.outputs.DESTINATION }}
 
-    secrets: inherit
+  #   secrets: inherit
 
-  unit-tests:
-    needs: build-ios
-    uses: ./.github/workflows/unit-tests.yml
+  # unit-tests:
+  #   needs: build-ios
+  #   uses: ./.github/workflows/unit-tests.yml
     # with:
     #   SCHEME: ${{ needs.set-variables.outputs.SCHEME }}
   # deploy-ios:
