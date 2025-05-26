@@ -23,6 +23,8 @@ jobs:
     #     DESTINATION: ${{ steps.export.outputs.DESTINATION }}
 
     steps:
+      - uses: actions/checkout@v4
+      
       - name: test
         run: |
           echo "--------------------------------------------------------"
