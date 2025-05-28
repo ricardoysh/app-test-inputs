@@ -29,8 +29,8 @@ jobs:
         run: |
           mkdir my_vars
 
-          echo "APP_NAME:$(yq e .app.name .pipeline.yaml)" >> my_vars/vars.txt
-          echo "APP_VERSION:$(yq e .app.version .pipeline.yaml)" >> my_vars/vars.txt
+          echo "APP_NAME:$(yq e .app.name .pipeline.yaml)" >> my_vars/vars.yaml
+          echo "APP_VERSION:$(yq e .app.version .pipeline.yaml)" >> my_vars/vars.yaml
           cat  my_vars/vars.txt
 
       - name: Upload artifacts***
@@ -43,7 +43,7 @@ jobs:
     needs: set-variables
     runs-on: ubuntu-latest
     steps:
-      - name: Load Vars ****
+      - name: Load Vars
         uses: actions/download-artifact@v4
         with:
           name: myvars
