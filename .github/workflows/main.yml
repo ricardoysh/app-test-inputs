@@ -32,11 +32,15 @@ jobs:
           echo "APP_NAME: $(yq e .app.name .pipeline.yaml)" >> my_vars/vars.yaml
           echo "APP_VERSION: $(yq e .app.version .pipeline.yaml)" >> my_vars/vars.yaml
           cat  my_vars/vars.yaml
-
+          
+          # ---------> Create a zip
           mkdir myfiles
           echo "TESTE TESTE TESTE" >> myfiles/uptime.txt
           zip -r "teste.zip" myfiles
           #zip -r "$APP_NAME-$APP_VERSION.zip" myfiles
+
+          echo "--------LS -R --------"
+          ls -R
 
       - name: Upload TXT
         uses: actions/upload-artifact@v4
