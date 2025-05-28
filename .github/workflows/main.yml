@@ -29,8 +29,8 @@ jobs:
         run: |
           mkdir my_vars
 
-          echo "APP_NAME=$(yq e .app.name .pipeline.yaml)" >> my_vars/vars.txt
-          echo "APP_VERSION=$(yq e .app.version .pipeline.yaml)" >> my_vars/vars.txt
+          echo "APP_NAME:$(yq e .app.name .pipeline.yaml)" >> my_vars/vars.txt
+          echo "APP_VERSION:$(yq e .app.version .pipeline.yaml)" >> my_vars/vars.txt
           cat  my_vars/vars.txt
 
           # echo "-------------------------------------------------------"
