@@ -56,12 +56,28 @@ jobs:
           yq e .APP_NAME vars.yaml
           yq e .APP_VERSION vars.yaml
 
-          # echo "-------------------------------------------------------"
-          # echo "APP_NAME=$(yq e .app.name .pipeline.yaml)" >> $GITHUB_ENV
-          # echo "APP_VERSION=$(yq e .app.version .pipeline.yaml)" >> $GITHUB_ENV
-          # echo "--------------------------------------------------------"
-          # echo "NOME DA APLICACAO: $APP_NAME"
-          # echo "VERSAO: $APP_VERSION"
+  thyrd:
+    needs: second
+    runs-on: ubuntu-latest
+    steps:
+      - name: TEST *****
+        run: echo "TEST"
+  
+  fourth:
+    needs: thyrd
+    runs-on: macos-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: myvars
+
+      - name: Show Variables ** 4 **
+        run: |
+          # Show variables
+          yq e .APP_NAME vars.yaml
+          yq e .APP_VERSION vars.yaml
+
   #     - name: Test
   #       run: |
   #         echo "$APP_NAME"
