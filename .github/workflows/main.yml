@@ -75,8 +75,12 @@ jobs:
       - name: Show Variables ** 4 **
         run: |
           # Show variables
-          yq e .APP_NAME vars.yaml
-          yq e .APP_VERSION vars.yaml
+          APP_NAME=$(yq e .APP_NAME vars.yaml)
+          APP_VERSION=$(yq e .APP_VERSION vars.yaml)
+
+          echo "----------------------------------------------------"
+          echo "$APP_NAME"
+          echo "$APP_VERSION"
 
   #     - name: Test
   #       run: |
