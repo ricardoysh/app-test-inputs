@@ -47,7 +47,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: myvars
-
+      - run: ls -R
       - name: Show Variables
         run: |
           yq e .APP_NAME vars.yaml
