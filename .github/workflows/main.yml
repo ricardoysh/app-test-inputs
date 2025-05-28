@@ -27,12 +27,13 @@ jobs:
 
       - name: test
         run: |
-          echo "--------------------------------------------------------"
-          export APP_NAME=$(yq e .app.name .pipeline.yaml)
-          export APP_VERSION=$(yq e .app.version .pipeline.yaml)
+          echo "-------------------------------------------------------"
+          echo "APP_NAME=$(yq e .app.name .pipeline.yaml)" >> $GITHUB_ENV
+          echo "APP_VERSION=$(yq e .app.version .pipeline.yaml)" >> $GITHUB_ENV
           echo "--------------------------------------------------------"
           echo "NOME DA APLICACAO: $APP_NAME"
           echo "VERSAO: $APP_VERSION"
+  
   second:
     needs: set-variables
     runs-on: macos-latest
