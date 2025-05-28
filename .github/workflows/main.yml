@@ -32,7 +32,7 @@ jobs:
           export APP_VERSION=$(yq e .app.version .pipeline.yaml)
           echo "--------------------------------------------------------"
           echo "NOME DA APLICACAO: $APP_NAME"
-          echo "VERSAO: $VERSION"
+          echo "VERSAO: $APP_VERSION"
   second:
     needs: set-variables
     runs-on: macos-latest
