@@ -34,7 +34,7 @@ jobs:
           cat  my_vars/vars.yaml
 
           mkdir myfiles
-          uptime >> myfiles/uptime.txt
+          echo "TESTE TESTE TESTE" >> myfiles/uptime.txt
           zip -r "$APP_NAME-$APP_VERSION.zip" myfiles
 
       - name: Upload TXT
