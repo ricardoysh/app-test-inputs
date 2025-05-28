@@ -50,7 +50,7 @@ jobs:
           echo "-------------------------------------"
           echo "ZIP_FILE_NAME=$APP_NAME-$APP_VERSION.zip" >> $GITHUB_ENV
 
-      - name: TESTE ENV ZIP
+      - name: ZIP FILE
         run: |
           echo $ZIP_FILE_NAME
 
@@ -58,10 +58,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: zipfile
-          path: "$ZIP_FILE_NAME"
+          path: ${{ env.ZIP_FILE_NAME }}
         env:
-          APP_NAME: $APP_NAME
-          APP_VERSION: $APP_VERSION
+          ZIP_FILE_NAME: $ZIP_FILE_NAME
 
       - name: Upload artifacts***
         uses: actions/upload-artifact@v4
