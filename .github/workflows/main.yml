@@ -24,15 +24,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: test
         run: |
           echo "--------------------------------------------------------"
           export APP_NAME=$(yq e .app.name .pipeline.yaml)
-          export VERSION=$(yq e .app.version .pipeline.yaml)
+          export APP_VERSION=$(yq e .app.version .pipeline.yaml)
           echo "--------------------------------------------------------"
           echo "NOME DA APLICACAO: $APP_NAME"
           echo "VERSAO: $VERSION"
+  second:
+    needs: set-variables
+    runs-on: macos-latest
+    steps:
+      - name: Show Variables
+        run: |
+          echo "$APP_NAME"
+          echo "APP_VERSION"
 
       # - name: Setup Variables
       #   id: export
