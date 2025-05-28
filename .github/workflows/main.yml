@@ -29,15 +29,18 @@ jobs:
         run: |
           mkdir my_vars
 
+          export "APP_NAME=$(yq e .app.name .pipeline.yaml)"
+          export "APP_VERSION=$(yq e .app.version .pipeline.yaml)"
+
           echo "APP_NAME: $(yq e .app.name .pipeline.yaml)" >> my_vars/vars.yaml
           echo "APP_VERSION: $(yq e .app.version .pipeline.yaml)" >> my_vars/vars.yaml
           cat  my_vars/vars.yaml
           
-          # ---------> Create a zip
+          echo "---------> Create a zip --------"
           mkdir myfiles
           echo "TESTE TESTE TESTE" >> myfiles/uptime.txt
-          zip -r "teste.zip" myfiles
-          #zip -r "$APP_NAME-$APP_VERSION.zip" myfiles
+          #zip -r "teste.zip" myfiles
+          zip -r "$APP_NAME-$APP_VERSION.zip" myfiles
 
           echo "--------LS -R --------"
           ls -R
