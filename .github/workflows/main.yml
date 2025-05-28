@@ -35,7 +35,8 @@ jobs:
 
           mkdir myfiles
           echo "TESTE TESTE TESTE" >> myfiles/uptime.txt
-          zip -r "$APP_NAME-$APP_VERSION.zip" myfiles
+          zip -r "teste.zip" myfiles
+          #zip -r "$APP_NAME-$APP_VERSION.zip" myfiles
 
       - name: Upload TXT
         uses: actions/upload-artifact@v4
