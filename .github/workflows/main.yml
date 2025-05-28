@@ -32,6 +32,9 @@ jobs:
           echo "APP_NAME=$(yq e .app.name .pipeline.yaml)" >> $GITHUB_ENV
           echo "APP_VERSION=$(yq e .app.version .pipeline.yaml)"  >> $GITHUB_ENV
 
+          export "APP_NAME=$(yq e .app.name .pipeline.yaml)"
+          export "APP_VERSION=$(yq e .app.version .pipeline.yaml)"
+
           echo "APP_NAME: $(yq e .app.name .pipeline.yaml)" >> my_vars/vars.yaml
           echo "APP_VERSION: $(yq e .app.version .pipeline.yaml)" >> my_vars/vars.yaml
           cat  my_vars/vars.yaml
