@@ -71,6 +71,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: myvars
+      
+      - name: Debug****
+        run: |
+          ls -R
 
       - name: Show Variables ** 4 **
         run: |
