@@ -25,26 +25,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: test
+      - name: mkdir
         run: |
-          echo "-------------------------------------------------------"
-          echo "APP_NAME=$(yq e .app.name .pipeline.yaml)" >> $GITHUB_ENV
-          echo "APP_VERSION=$(yq e .app.version .pipeline.yaml)" >> $GITHUB_ENV
-          echo "--------------------------------------------------------"
-          echo "NOME DA APLICACAO: $APP_NAME"
-          echo "VERSAO: $APP_VERSION"
-      - name: Test
-        run: |
-          echo "$APP_NAME"
-          echo "APP_VERSION"
-  second:
-    needs: set-variables
-    runs-on: macos-latest
-    steps:
-      - name: Show Variables
-        run: |
-          echo "$APP_NAME"
-          echo "APP_VERSION"
+          mkdir my_vars
+
+          echo "APP_NAME=$(yq e .app.name .pipeline.yaml)" >> my_vars/vars.txt
+          echo "APP_VERSION=$(yq e .app.version .pipeline.yaml)" my_vars/vars.txt
+          cat  my_vars/vars.txt
+
+          # echo "-------------------------------------------------------"
+          # echo "APP_NAME=$(yq e .app.name .pipeline.yaml)" >> $GITHUB_ENV
+          # echo "APP_VERSION=$(yq e .app.version .pipeline.yaml)" >> $GITHUB_ENV
+          # echo "--------------------------------------------------------"
+          # echo "NOME DA APLICACAO: $APP_NAME"
+          # echo "VERSAO: $APP_VERSION"
+  #     - name: Test
+  #       run: |
+  #         echo "$APP_NAME"
+  #         echo "APP_VERSION"
+  # second:
+  #   needs: set-variables
+  #   runs-on: macos-latest
+  #   steps:
+  #     - name: Show Variables
+  #       run: |
+  #         echo "$APP_NAME"
+  #         echo "$APP_VERSION"
 
       # - name: Setup Variables
       #   id: export
