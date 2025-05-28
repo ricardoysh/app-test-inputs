@@ -33,7 +33,10 @@ jobs:
           echo "--------------------------------------------------------"
           echo "NOME DA APLICACAO: $APP_NAME"
           echo "VERSAO: $APP_VERSION"
-  
+      - name: Test
+        run: |
+          echo "$APP_NAME"
+          echo "APP_VERSION"
   second:
     needs: set-variables
     runs-on: macos-latest
