@@ -45,11 +45,14 @@ jobs:
           echo "--------LS -R --------"
           ls -R
 
-      - name: Upload TXT
+      - name: Upload TXT ***
         uses: actions/upload-artifact@v4
         with:
           name: zipfile
-          path: "${APP_NAME}-${APP_VERSION}.zip"
+          path: "$APP_NAME-$APP_VERSION.zip"
+        env:
+          APP_NAME: $APP_NAME
+          APP_VERSION: $APP_VERSION
 
       - name: Upload artifacts***
         uses: actions/upload-artifact@v4
