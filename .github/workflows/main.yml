@@ -55,7 +55,7 @@ jobs:
           echo $ZIP_FILE_NAME
           cat fileteste.xml
 
-        #continue-on-error: true
+        continue-on-error: true
 
       - name: Upload TXT ***
         uses: actions/upload-artifact@v4
