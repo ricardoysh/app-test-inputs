@@ -58,7 +58,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: zipfile
-          path: ${{ env.ZIP_FILE_NAME }}
+          path: ${{ env.artifactPath }}
+          #path: ${{ env.ZIP_FILE_NAME }}
         env:
           ZIP_FILE_NAME: $ZIP_FILE_NAME
 
