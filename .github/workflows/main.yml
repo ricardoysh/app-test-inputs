@@ -25,6 +25,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Debug Checkout
+        run: |
+          pwd
+          echo "-------------------------------------"
+          ls -lha
+          echo "-------------------------------------"
+          ls -R
+
+          echo "fim"
+
       - name: mkdir
         run: |
           mkdir my_vars
