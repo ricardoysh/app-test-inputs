@@ -62,12 +62,12 @@ jobs:
           echo "-------------------------------------"
           echo "ZIP_FILE_NAME=$APP_NAME-$APP_VERSION.zip" >> $GITHUB_ENV
 
-      - name: ZIP FILE
-        run: |
-          echo $ZIP_FILE_NAME
-          cat fileteste.xml
+      # - name: ZIP FILE
+      #   run: |
+      #     echo $ZIP_FILE_NAME
+      #     cat fileteste.xml
 
-        continue-on-error: true
+      #   continue-on-error: true
 
       - name: Upload TXT ***
         uses: actions/upload-artifact@v4
