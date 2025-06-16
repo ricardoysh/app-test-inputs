@@ -119,8 +119,8 @@ jobs:
 
       - name: Debug******
         run: |
-          echo "${{ env.ORG_NAME }}"
-          echo "${{ vars.ORG_NAME }}"
+          echo "1. ${{ env.ORG_NAME }}"
+          echo "2. ${{ vars.ORG_NAME }}"
 
   # thyrd:
   #   needs: second
