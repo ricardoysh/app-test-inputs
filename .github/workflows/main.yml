@@ -192,7 +192,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: STAGE 2 - TEST
-        run: echo "TESTE -2"    
+        run: | 
+          echo "TESTE -2"
+          echo ""
+          echo "${{ steps.export.outputs.SCHEME }}"
+
   #   secrets: inherit
 
   # unit-tests:

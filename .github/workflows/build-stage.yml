@@ -25,53 +25,53 @@ jobs:
 
 
     steps:
-      - name: Load Variables
-        uses: actions/download-artifact@v4
-        with:
-          name: shared-variables
+      # - name: Load Variables
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: shared-variables
 
-      - name: Test Downloded Artifacts
-        run: |
-          ls -R
-          cat variables.yaml
+      # - name: Test Downloded Artifacts
+      #   run: |
+      #     ls -R
+      #     cat variables.yaml
       # - name: install yq
       #   run: brew install yq
 
-      - name: Ler variável
-        run: |
-
-          export SCHEME=$(yq -r .SCHEME variables.yaml)
-          export CONFIGURATION=$(yq -r .CONFIGURATION variables.yaml)
-          export DESTINATION=$(yq -r .DESTINATION variables.yaml)
-          echo "---------------------------"
-          echo "#------- GET VALUES FROM YAML --------"
-          echo "1. $SCHEME"
-          echo "2. $CONFIGURATION"
-          echo "3. ${DESTINATION}"
-          
-          echo "SCHEME=$SCHEME" >> $GITHUB_ENV
-          echo "CONFIGURATION=$CONFIGURATION"  >> $GITHUB_ENV
-          echo "DESTINATION=${DESTINATION}"  >> $GITHUB_ENV
-
-      # - name: SHOW ENVIROMENTS VAIRABLES
+      # - name: Ler variável
       #   run: |
-      #     # -------> Show Variables:
-      #     echo "${{ inputs.SCHEME }}"
-      #     echo "${{ inputs.CONFIGURATION }}"
-      #     echo "${{ inputs.DESTINATION }}"
-      #     echo "${{ env.ORG_NAME }}"
-      
-      - name: Checkkout Code
-        uses: actions/checkout@v4
-  
-      - name: Build App with Xcode
+
+          # export SCHEME=$(yq -r .SCHEME variables.yaml)
+          # export CONFIGURATION=$(yq -r .CONFIGURATION variables.yaml)
+          # export DESTINATION=$(yq -r .DESTINATION variables.yaml)
+          # echo "---------------------------"
+          # echo "#------- GET VALUES FROM YAML --------"
+          # echo "1. $SCHEME"
+          # echo "2. $CONFIGURATION"
+          # echo "3. ${DESTINATION}"
+          
+          # echo "SCHEME=$SCHEME" >> $GITHUB_ENV
+          # echo "CONFIGURATION=$CONFIGURATION"  >> $GITHUB_ENV
+          # echo "DESTINATION=${DESTINATION}"  >> $GITHUB_ENV
+
+      - name: SHOW ENVIROMENTS VAIRABLES
         run: |
-          # ------------> Buildando aplicação ...
-          echo -e xcodebuld \\n\
-            --scheme "$SCHEME" \\n\
-            --configuration "$CONFIGURATION" \\n\
-            --destination "$DESTINATION" \\n\
-            clean
+          # -------> Show Variables:
+          echo "${{ inputs.SCHEME }}"
+          echo "${{ inputs.CONFIGURATION }}"
+          echo "${{ inputs.DESTINATION }}"
+          echo "${{ env.ORG_NAME }}"
+      
+      # - name: Checkkout Code
+      #   uses: actions/checkout@v4
+  
+      # - name: Build App with Xcode
+      #   run: |
+      #     # ------------> Buildando aplicação ...
+      #     echo -e xcodebuld \\n\
+      #       --scheme "$SCHEME" \\n\
+      #       --configuration "$CONFIGURATION" \\n\
+      #       --destination "$DESTINATION" \\n\
+      #       clean
 
 
         # env:
