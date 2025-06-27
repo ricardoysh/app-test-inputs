@@ -93,39 +93,42 @@ jobs:
     needs: set-variables
     runs-on: ubuntu-latest
     steps:
-      - name: Load Vars
-        uses: actions/download-artifact@v4
-        with:
-          name: myvars
+      - name: STAGE TEST
+        run: echo "TESTE"
 
-      - run: |
-          ls -R && cat vars.yaml
-          echo "----------------------------------"
-          echo ${{ vars.URL_TESTE }}
+      # - name: Load Vars
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: myvars
 
-      - name: Download ZIP
-        uses: actions/download-artifact@v4
-        with:
-          name: zipfile
+      # - run: |
+      #     ls -R && cat vars.yaml
+      #     echo "----------------------------------"
+      #     echo ${{ vars.URL_TESTE }}
 
-      - name: Output ZIP
-        run: |
-          pwd
-          echo "----------------------------------------"
-          ls -lha
-          echo "----------------------------------------"
-          ls -R
+      # - name: Download ZIP
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: zipfile
+
+      # - name: Output ZIP
+      #   run: |
+      #     pwd
+      #     echo "----------------------------------------"
+      #     ls -lha
+      #     echo "----------------------------------------"
+      #     ls -R
         
-      - name: Show Variables
-        run: |
-          # Show variables
-          yq e .APP_NAME vars.yaml
-          yq e .APP_VERSION vars.yaml
+      # - name: Show Variables
+      #   run: |
+      #     # Show variables
+      #     yq e .APP_NAME vars.yaml
+      #     yq e .APP_VERSION vars.yaml
 
-      - name: Debug******
-        run: |
-          echo "1. ${{ env.ORG_NAME }}"
-          echo "2. ${{ vars.ORG_NAME }}"
+      # - name: Debug******
+      #   run: |
+      #     echo "1. ${{ env.ORG_NAME }}"
+      #     echo "2. ${{ vars.ORG_NAME }}"
 
   # thyrd:
   #   needs: second
@@ -183,6 +186,13 @@ jobs:
       CONFIGURATION: ${{ needs.set-variables.outputs.CONFIGURATION }}
       DESTINATION: ${{ needs.set-variables.outputs.DESTINATION }}
 
+
+  final-test:
+    needs: build-ios
+    runs-on: macos-latest
+    steps:
+      - name: STAGE 2 - TEST
+        run: echo "TESTE -2"    
   #   secrets: inherit
 
   # unit-tests:
