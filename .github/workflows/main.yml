@@ -36,9 +36,9 @@ jobs:
       - name: Setup Variables
         id: export
         run: |
-          echo "SCHEME: ${{ env.SCHEME }}" >> $GITHUB_OUTPUT
-          echo "CONFIGURATION: ${{ env.CONFIGURATION }}" >> $GITHUB_OUTPUT
-          echo "DESTINATION: ${{ env.DESTINATION }}" >> $GITHUB_OUTPUT
+          echo "SCHEME=${{ env.SCHEME }}" >> $GITHUB_OUTPUT
+          echo "CONFIGURATION=${{ env.CONFIGURATION }}" >> $GITHUB_OUTPUT
+          echo "DESTINATION=${{ env.DESTINATION }}" >> $GITHUB_OUTPUT
 
 
       # - name: mkdir
