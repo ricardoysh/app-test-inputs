@@ -2,19 +2,19 @@ name: Build App iOS
 
 on:
   workflow_call:
-    # inputs:
-    #   SCHEME:
-    #     required: true
-    #     type: string
-    #   CONFIGURATION:
-    #     required: true
-    #     type: string
-    #   DESTINATION:
-    #     required: true
-    #     type: string
-    #   ORG_NAME:
-    #     required: true
-    #     type: string
+    inputs:
+      SCHEME:
+        required: true
+        type: string
+      CONFIGURATION:
+        required: true
+        type: string
+      DESTINATION:
+        required: true
+        type: string
+      # ORG_NAME:
+      #   required: true
+      #   type: string
       # PROJECT_NAME:
       #   required: true
       #   type: string
