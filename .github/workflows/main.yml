@@ -8,19 +8,16 @@ env:
 
 on:
   push
-    # outputs:
-    #   PROJECT_NAME:
-    #     value: ${{ jobs.set-vars.outputs.PROJECT_NAME }}
 
   
 jobs:
   set-variables:
     runs-on: macos-latest
    
-    # outputs:
-    #     SCHEME: ${{ steps.export.outputs.SCHEME }}
-    #     CONFIGURATION: ${{ steps.export.outputs.CONFIGURATION }}
-    #     DESTINATION: ${{ steps.export.outputs.DESTINATION }}
+    outputs:
+        SCHEME: ${{ steps.export.outputs.SCHEME }}
+        CONFIGURATION: ${{ steps.export.outputs.CONFIGURATION }}
+        DESTINATION: ${{ steps.export.outputs.DESTINATION }}
 
     steps:
       - uses: actions/checkout@v4
@@ -35,32 +32,40 @@ jobs:
           echo ${{ vars.URL_TESTE }}
 
           echo "fim"
-
-      - name: mkdir
+        
+      - name: Setup Variables
+        id: export
         run: |
-          mkdir my_vars
+          echo "SCHEME: ${{ env.SCHEME }}" >> $GITHUB_OUTPUT
+          echo "CONFIGURATION: ${{ env.CONFIGURATION }}" >> $GITHUB_OUTPUT
+          echo "DESTINATION: ${{ env.DESTINATION }}" >> $GITHUB_OUTPUT
 
-          echo "APP_NAME=$(yq e .app.name .pipeline.yaml)" >> $GITHUB_ENV
-          echo "APP_VERSION=$(yq e .app.version .pipeline.yaml)"  >> $GITHUB_ENV
 
-          export "APP_NAME=$(yq e .app.name .pipeline.yaml)"
-          export "APP_VERSION=$(yq e .app.version .pipeline.yaml)"
+      # - name: mkdir
+      #   run: |
+      #     mkdir my_vars
 
-          echo "APP_NAME: $(yq e .app.name .pipeline.yaml)" >> my_vars/vars.yaml
-          echo "APP_VERSION: $(yq e .app.version .pipeline.yaml)" >> my_vars/vars.yaml
-          cat  my_vars/vars.yaml
+      #     echo "APP_NAME=$(yq e .app.name .pipeline.yaml)" >> $GITHUB_ENV
+      #     echo "APP_VERSION=$(yq e .app.version .pipeline.yaml)"  >> $GITHUB_ENV
+
+      #     export "APP_NAME=$(yq e .app.name .pipeline.yaml)"
+      #     export "APP_VERSION=$(yq e .app.version .pipeline.yaml)"
+
+      #     echo "APP_NAME: $(yq e .app.name .pipeline.yaml)" >> my_vars/vars.yaml
+      #     echo "APP_VERSION: $(yq e .app.version .pipeline.yaml)" >> my_vars/vars.yaml
+      #     cat  my_vars/vars.yaml
           
-          echo "---------> Create a zip --------"
-          mkdir myfiles
-          echo "TESTE TESTE TESTE" >> myfiles/uptime.txt
-          #zip -r "teste.zip" myfiles
-          zip -r "$APP_NAME-$APP_VERSION.zip" myfiles
+      #     echo "---------> Create a zip --------"
+      #     mkdir myfiles
+      #     echo "TESTE TESTE TESTE" >> myfiles/uptime.txt
+      #     #zip -r "teste.zip" myfiles
+      #     zip -r "$APP_NAME-$APP_VERSION.zip" myfiles
 
-          echo "--------LS -R --------"
-          ls -R
-          echo "-------------------------------------"
-          ls -lha
-          echo "ZIP_FILE_NAME=$APP_NAME-$APP_VERSION.zip" >> $GITHUB_ENV
+      #     echo "--------LS -R --------"
+      #     ls -R
+      #     echo "-------------------------------------"
+      #     ls -lha
+      #     echo "ZIP_FILE_NAME=$APP_NAME-$APP_VERSION.zip" >> $GITHUB_ENV
 
       # - name: ZIP FILE
       #   run: |
@@ -69,20 +74,20 @@ jobs:
 
       #   continue-on-error: true
 
-      - name: Upload TXT ***
-        uses: actions/upload-artifact@v4
-        with:
-          name: zipfile
-          path: ./*
-          #path: ${{ env.ZIP_FILE_NAME }}
-        env:
-          ZIP_FILE_NAME: $ZIP_FILE_NAME
+      # - name: Upload TXT ***
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: zipfile
+      #     path: ./*
+      #     #path: ${{ env.ZIP_FILE_NAME }}
+      #   env:
+      #     ZIP_FILE_NAME: $ZIP_FILE_NAME
 
-      - name: Upload artifacts***
-        uses: actions/upload-artifact@v4
-        with:
-          name: myvars
-          path: my_vars/vars.yaml
+      # - name: Upload artifacts***
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: myvars
+      #     path: my_vars/vars.yaml
 
   second:
     needs: set-variables
@@ -158,13 +163,7 @@ jobs:
   #         echo "APP_VERSION"
 
 
-      # - name: Setup Variables
-      #   id: export
-      #   run: |
-      #     echo "SCHEME: ${{ env.SCHEME }}" >> variables.yaml
-      #     echo "CONFIGURATION: ${{ env.CONFIGURATION }}" >> variables.yaml
-      #     echo "DESTINATION: ${{ env.DESTINATION }}" >> variables.yaml
-      #     cat variables.yaml
+
 
       #     # echo "SCHEME=${{ env.SCHEME }}" >> $GITHUB_OUTPUT
       #     # echo "CONFIGURATION=${{ env.CONFIGURATION }}" >> $GITHUB_OUTPUT
@@ -176,13 +175,13 @@ jobs:
       #     name: shared-variables
       #     path: variables.yaml
 
-  # build-ios:
-  #   needs: set-variables
-  #   uses: ./.github/workflows/build-stage.yml
-  #   # with:
-  #   #   SCHEME: ${{ needs.set-variables.outputs.SCHEME }}
-  #   #   CONFIGURATION: ${{ needs.set-variables.outputs.CONFIGURATION }}
-  #   #   DESTINATION: ${{ needs.set-variables.outputs.DESTINATION }}
+  build-ios:
+    needs: set-variables
+    uses: ./.github/workflows/build-stage.yml
+    with:
+      SCHEME: ${{ needs.set-variables.outputs.SCHEME }}
+      CONFIGURATION: ${{ needs.set-variables.outputs.CONFIGURATION }}
+      DESTINATION: ${{ needs.set-variables.outputs.DESTINATION }}
 
   #   secrets: inherit
 
